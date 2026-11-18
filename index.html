@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Everyday Tools - 200 Master</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;font-family:'Inter';margin:0;padding:0}
+body{background:#f6f7fb}
+header{background:#0a0a0a;color:#fff;padding:20px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-weight:900} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wrap{max-width:1200px;margin:auto;padding:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.main-dabba{background:white;border-radius:22px;padding:28px 15px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06);cursor:pointer}
+.logo{width:70px;height:70px;margin:0 auto 10px;background:linear-gradient(145deg,#0a0a0a,#2a2a2a);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px}
+.card{background:white;border-radius:16px;padding:16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.hidden{display:none}
+.back{border:none;background:#0a0a0a;color:white;padding:10px 18px;border-radius:12px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header><h1>ibuking26.<span>xyz</span> - Everyday Tools</h1></header>
+<div class="wrap">
+<div id="home"><div class="grid" id="folders"></div></div>
+<div id="inside" class="hidden"><button class="back" onclick="goHome()">← Back</button><h2 id="ftitle" style="margin-bottom:12px;font-weight:800"></h2><div class="grid" id="tools"></div></div>
+</div>
+<script>
+let allTools=[];
+for(let i=1;i<=200;i++){allTools.push("Tool "+i+" Calculator")}
+let folders=document.getElementById('folders');
+let toolsDiv=document.getElementById('tools');
+
+for(let f=0;f<8;f++){
+ let start=f*25+1; let end=(f+1)*25;
+ let icons=["🧮","📊","💰","📐","⏰","⚖️","🔧","🧪"];
+ folders.innerHTML+=`<div class="main-dabba" onclick="openFolder(${f})"><div class="logo">${icons[f]}</div><h3 style="font-weight:800;font-size:15px">Box ${f+1}</h3><p style="color:#666;font-size:12px;margin-top:4px">${start} - ${end} Tools</p></div>`;
+}
+
+function openFolder(f){
+ home.classList.add('hidden'); inside.classList.remove('hidden');
+ let start=f*25; let end=start+25;
+ ftitle.innerText=`Box ${f+1} : ${start+1} to ${end}`;
+ toolsDiv.innerHTML="";
+ for(let i=start;i<end;i++){
+  toolsDiv.innerHTML+=`<div class="card"><div style="font-size:28px">🧮</div><div style="font-weight:600;margin-top:6px;font-size:13px">${allTools[i]}</div></div>`;
+ }
+ window.scrollTo(0,0);
+}
+function goHome(){inside.classList.add('hidden');home.classList.remove('hidden');}
+</script>
+</body>
+</html>
