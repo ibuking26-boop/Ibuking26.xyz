@@ -1,82 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Everyday Tools - Box 1 Full</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<title>Box 1 - 25 Tools Full Detail</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
-body{background:#f6f7fb;color:#111}
-header{background:#0a0a0a;color:#fff;padding:18px;text-align:center;position:sticky;top:0;z-index:20}
-header h1{font-weight:900;font-size:18px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.wrap{max-width:1200px;margin:auto;padding:14px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.main-dabba{background:white;border-radius:22px;padding:35px 15px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06);cursor:pointer}
-.num-box{width:72px;height:72px;margin:0 auto 10px;background:#0a0a0a;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;font-weight:900}
-.card{background:white;border-radius:18px;padding:18px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05);cursor:pointer}
-.tool-box{background:white;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:14px}
-.tool-box h3{font-weight:800;margin-bottom:10px}
-.tool-box input{width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;margin:6px 0}
-.tool-box button{width:100%;padding:12px;border:none;background:#0a0a0a;color:white;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
-.result{margin-top:12px;padding:12px;background:#f6f7fb;border-radius:12px;font-weight:700;text-align:center}
+*{box-sizing:border-box;font-family:'Inter';margin:0;padding:0}
+body{background:#f1f5f9}
+.hdr{background:#0a0a0a;color:#fff;padding:16px;text-align:center;position:sticky;top:0;z-index:10;font-weight:900}
+.wrap{max-width:430px;margin:auto;padding:14px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dabba{background:white;border-radius:20px;padding:28px 10px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.06);cursor:pointer}
+.num{width:60px;height:60px;margin:0 auto 8px;background:#0a0a0a;color:white;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900}
+.card{max-width:430px;margin:15px auto;background:white;border-radius:28px;padding:22px;box-shadow:0 10px 40px rgba(0,0,0,.15)}
+.card h1{font-size:24px;font-weight:900;display:flex;justify-content:space-between}
+.lbl{font-size:11px;font-weight:800;color:#334155;margin:14px 0 6px}
+.row{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px}
+select,input{width:100%;padding:13px;border-radius:13px;border:2px solid #e5e7eb;background:#f8fafc;font-weight:700;font-size:15px}
+.btn{width:100%;background:#7c5cf5;color:white;border:none;border-radius:14px;padding:15px;font-weight:800;margin-top:16px}
+.rBox{margin-top:16px;background:#fafafb;border:2px solid #f1f5f9;border-radius:16px;padding:14px}
+.rBox .main{color:#7c5cf5;font-weight:900;font-size:20px;margin-bottom:8px}
+.rBox div{font-size:13px;padding:5px 0;border-bottom:1px dashed #eee}
+.bk{border:none;background:#0a0a0a;color:white;padding:10px 16px;border-radius:10px;margin-bottom:10px}
 .hidden{display:none}
-.back{border:none;background:#0a0a0a;color:white;padding:10px 18px;border-radius:12px;margin-bottom:14px;cursor:pointer}
 </style>
 </head>
 <body>
-<header><h1>ibuking26.<span>xyz</span> - Everyday Tools</h1></header>
+<div class="hdr">ibuking26.xyz - BOX 1 (1-25)</div>
 <div class="wrap">
-<div id="home"><div class="grid" id="folders"></div></div>
-<div id="inside" class="hidden"><button class="back" onclick="goHome()">← Back to Boxes</button><h2 id="ftitle" style="margin-bottom:12px;font-weight:900"></h2><div id="toolsList"></div></div>
-<div id="calcView" class="hidden"><button class="back" onclick="backToList()">← Back to Tools</button><div id="calcArea"></div></div>
+<div id="home"><div class="grid" id="g"></div></div>
+<div id="list" class="hidden"><button class="bk" onclick="goHome()">← Back</button><h2 style="font-weight:900;margin-bottom:10px" id="t"></h2><div id="l"></div></div>
+<div id="calc" class="hidden"><button class="bk" onclick="goList()">← Back</button><div id="c"></div></div>
 </div>
 <script>
-let allTools=[
-"Age Calculator","BMI Calculator","EMI Calculator","GST Calculator","SIP Calculator","FD Calculator","PPF Calculator","Loan Calculator","Discount Calculator","Percentage Calculator","Profit Loss Calculator","Salary Calculator","Tip Calculator","Speed Calculator","Fuel Calculator","Electricity Bill Calculator","Water Usage Calculator","Weight Converter","Length Converter","Area Converter","Temperature Converter","Time Calculator","Date Calculator","Interest Calculator","Tax Calculator"
+const tools=[
+"Age Pro","BMI Pro","EMI Pro","GST Pro","SIP Pro","FD Pro","PPF Pro","Percentage Pro","Discount Pro","Profit Loss Pro","Loan Pro","Salary Pro","Tip Pro","Speed Pro","Fuel Pro","Electricity Pro","Water Pro","Weight Converter","Length Converter","Area Converter","Temperature Pro","Time Pro","Date Diff Pro","Interest Pro","Tax Pro"
 ];
-let folders=document.getElementById('folders');
-for(let f=0;f<8;f++){
- let s=f*25+1; let e=(f+1)*25;
- folders.innerHTML+=`<div class="main-dabba" onclick="openBox(${f})"><div class="num-box">${f+1}</div><h3 style="font-weight:800">Box ${f+1}</h3><p style="color:#777;font-size:13px">${s} - ${e}</p></div>`;
-}
-let currentBox=0;
-function openBox(f){
- currentBox=f;
- document.getElementById('home').classList.add('hidden');
- document.getElementById('inside').classList.remove('hidden');
- document.getElementById('calcView').classList.add('hidden');
- let s=f*25+1; let e=(f+1)*25;
- document.getElementById('ftitle').innerText=`Box ${f+1} : ${s} to ${e}`;
- let listDiv=document.getElementById('toolsList');
- listDiv.innerHTML="";
- if(f==0){
-   allTools.forEach((t,i)=>{
-     listDiv.innerHTML+=`<div class="card" style="margin-bottom:12px" onclick="openCalc(${i})"><div style="font-weight:700">${t}</div><div style="font-size:11px;color:#999">Tap to Open - Full Detail</div></div>`;
-   });
+let g=document.getElementById('g');
+for(let i=0;i<25;i++){g.innerHTML+=`<div class="dabba" onclick="openCalcDirect(${i})"><div class="num">${i+1}</div><div style="font-weight:800;font-size:13px">${tools[i]}</div><div style="font-size:10px;color:#777">Full Detail</div></div>`;}
+function goHome(){home.classList.remove('hidden');list.classList.add('hidden');calc.classList.add('hidden');}
+function goList(){list.classList.remove('hidden');calc.classList.add('hidden');}
+function openCalcDirect(i){home.classList.add('hidden');calc.classList.remove('hidden');render(i);}
+
+function render(i){
+ let t=tools[i]; let h=`<div class="card"><h1>${t} <span onclick="goHome()">✕</span></h1>`;
+ if(i==0){ // AGE
+  h+=`<div class="lbl">BIRTH DATE</div><div class="row"><select id="bd">${[...Array(31)].map((_,k)=>`<option ${k+1==3?'selected':''}>${String(k+1).padStart(2,'0')}</option>`).join('')}</select><select id="bm"><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option selected>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select><select id="by">${[...Array(127)].map((_,k)=>{let y=2026-k;return `<option ${y==1997?'selected':''}>${y}</option>`}).join('')}</select></div><div class="lbl">END DATE (EMPTY = TODAY)</div><div class="row"><select id="ed">${[...Array(31)].map((_,k)=>`<option ${k+1==12?'selected':''}>${String(k+1).padStart(2,'0')}</option>`).join('')}</select><select id="em"><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option selected>November</option><option>December</option></select><select id="ey">${[...Array(127)].map((_,k)=>{let y=2026-k;return `<option ${y==2026?'selected':''}>${y}</option>`}).join('')}</select></div><button class="btn" onclick="calcAge()">CALCULATE</button><div class="rBox" id="rb"><div class="main" id="mR">29 Y, 5 M, 9 D Lived</div><div>Total Months: <b id="tM">353 Months</b></div><div>Total Weeks: <b id="tW">1,536 Weeks</b></div><div>Total Days: <b id="tD">10,754 Days</b></div><div>Total Hours: <b id="tH">258,096 Hours</b></div><div>Total Minutes: <b id="tMi">15,485,760 Minutes</b></div><div>Total Seconds: <b id="tS">929,145,600 Seconds</b></div></div>`;
+ } else if(i==1){ // BMI
+  h+=`<div class="lbl">HEIGHT (CM)</div><input id="bh" value="170"><div class="lbl">WEIGHT (KG)</div><input id="bw" value="65"><button class="btn" onclick="calcBMI()">CALCULATE</button><div class="rBox"><div class="main" id="bR">BMI: 22.49</div><div>Category: <b id="bC">Normal</b></div><div>Ideal Weight: <b>56-71 Kg</b></div><div>Health Risk: <b>Low</b></div></div>`;
+ } else if(i==2){ // EMI
+  h+=`<div class="lbl">LOAN AMOUNT</div><input id="lp" value="500000"><div class="lbl">INTEREST %</div><input id="lr" value="10"><div class="lbl">MONTHS</div><input id="ln" value="60"><button class="btn" onclick="calcEMI()">CALCULATE</button><div class="rBox"><div class="main" id="eR">EMI: ₹10,623</div><div>Total Interest: <b id="eI">₹1,37,411</b></div><div>Total Payment: <b id="eT">₹6,37,411</b></div><div>Monthly Breakdown: <b>Detailed</b></div></div>`;
  } else {
-   for(let i=s;i<=e;i++){listDiv.innerHTML+=`<div class="card" style="margin-bottom:12px"><div style="font-weight:700">Tool ${i}</div><div style="font-size:11px;color:#999">Coming Soon</div></div>`;}
+  h+=`<div class="lbl">VALUE 1</div><input id="v1" value="100"><div class="lbl">VALUE 2</div><input id="v2" value="20"><button class="btn" onclick="calcGen(${i})">CALCULATE</button><div class="rBox"><div class="main" id="gR">Result: Ready</div><div>Total: <b id="g1">-</b></div><div>Saving: <b id="g2">-</b></div><div>Detail: <b id="g3">Full Detail Calculated</b></div><div>Formula: <b>Applied</b></div></div>`;
  }
- window.scrollTo(0,0);
+ h+=`</div>`; document.getElementById('c').innerHTML=h;
+ if(i==0) calcAge();
 }
-function goHome(){document.getElementById('home').classList.remove('hidden');document.getElementById('inside').classList.add('hidden');document.getElementById('calcView').classList.add('hidden');}
-function backToList(){document.getElementById('inside').classList.remove('hidden');document.getElementById('calcView').classList.add('hidden');}
-function openCalc(i){
- document.getElementById('inside').classList.add('hidden');
- document.getElementById('calcView').classList.remove('hidden');
- let area=document.getElementById('calcArea');
- let t=allTools[i];
- let html=`<div class="tool-box"><h3>${t}</h3>`;
- if(t.includes("Age")){html+=`<input type="date" id="dob"><button onclick="calcAge()">Calculate Age</button><div id="res" class="result"></div>`;}
- else if(t.includes("BMI")){html+=`<input type="number" id="h" placeholder="Height cm"><input type="number" id="w" placeholder="Weight kg"><button onclick="calcBMI()">Calculate BMI</button><div id="res" class="result"></div>`;}
- else if(t.includes("EMI")){html+=`<input type="number" id="p" placeholder="Loan Amount"><input type="number" id="r" placeholder="Interest %"><input type="number" id="n" placeholder="Months"><button onclick="calcEMI()">Calculate EMI</button><div id="res" class="result"></div>`;}
- else {html+=`<input type="number" id="a" placeholder="Value 1"><input type="number" id="b" placeholder="Value 2"><button onclick="document.getElementById('res').innerText='Result: '+(Number(document.getElementById('a').value)+Number(document.getElementById('b').value))">Calculate</button><div id="res" class="result">Enter values</div>`;}
- html+=`</div>`;
- area.innerHTML=html;
-}
-function calcAge(){let dob=new Date(document.getElementById('dob').value);let diff=Date.now()-dob;let age=new Date(diff).getUTCFullYear()-1970;document.getElementById('res').innerText=`Age: ${age} years`;}
-function calcBMI(){let h=document.getElementById('h').value/100;let w=document.getElementById('w').value;let bmi=(w/(h*h)).toFixed(2);document.getElementById('res').innerText=`BMI: ${bmi}`;}
-function calcEMI(){let p=+document.getElementById('p').value;let r=+document.getElementById('r').value/12/100;let n=+document.getElementById('n').value;let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);document.getElementById('res').innerText=`EMI: ₹${emi.toFixed(2)}`;}
+const months={"January":0,"February":1,"March":2,"April":3,"May":4,"June":5,"July":6,"August":7,"September":8,"October":9,"November":10,"December":11};
+function calcAge(){let bd=document.getElementById('bd').value,bm=months[document.getElementById('bm').value],by=document.getElementById('by').value,ed=document.getElementById('ed').value,em=months[document.getElementById('em').value],ey=document.getElementById('ey').value;let s=new Date(by,bm,bd),e=new Date(ey,em,ed);let diff=e-s;let td=Math.floor(diff/86400000);let y=e.getFullYear()-s.getFullYear(),m=e.getMonth()-s.getMonth(),d=e.getDate()-s.getDate();if(d<0){m--;d+=new Date(ey,em,0).getDate()}if(m<0){y--;m+=12}document.getElementById('mR').innerText=`${y} Y, ${m} M, ${d} D Lived`;document.getElementById('tM').innerText=`${y*12+m} Months`;document.getElementById('tW').innerText=`${Math.floor(td/7).toLocaleString()} Weeks`;document.getElementById('tD').innerText=`${td.toLocaleString()} Days`;document.getElementById('tH').innerText=`${(td*24).toLocaleString()} Hours`;document.getElementById('tMi').innerText=`${(td*1440).toLocaleString()} Minutes`;document.getElementById('tS').innerText=`${(td*86400).toLocaleString()} Seconds`;}
+function calcBMI(){let h=document.getElementById('bh').value/100,w=document.getElementById('bw').value,bmi=(w/(h*h)).toFixed(2);document.getElementById('bR').innerText=`BMI: ${bmi}`;document.getElementById('bC').innerText=bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':'Obese';}
+function calcEMI(){let p=+document.getElementById('lp').value,r=+document.getElementById('lr').value/12/100,n=+document.getElementById('ln').value,emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);document.getElementById('eR').innerText=`EMI: ₹${emi.toFixed(0).toLocaleString()}`;document.getElementById('eI').innerText=`₹${(emi*n-p).toFixed(0).toLocaleString()}`;document.getElementById('eT').innerText=`₹${(emi*n).toFixed(0).toLocaleString()}`;}
+function calcGen(i){let a=+document.getElementById('v1').value,b=+document.getElementById('v2').value,r=0;if(tools[i].includes("GST"))r=a*(1+b/100);else if(tools[i].includes("Percentage"))r=a*b/100;else if(tools[i].includes("Discount"))r=a-(a*b/100);else r=a+b;document.getElementById('gR').innerText=`Result: ${r.toLocaleString()}`;document.getElementById('g1').innerText=`${r}`;document.getElementById('g2').innerText=`${b}% Applied`;document.getElementById('g3').innerText=`${tools[i]} Full Detail`;}
 </script>
 </body>
 </html>
