@@ -3,36 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Everyday Tools - 25 in 1 - FULL FINAL</title>
+<title>Everyday Tools - 25 in 1 - FINAL FIXED</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
 body{background:#f6f7fb;color:#111}
-header{background:#0a0a0a;color:#fff;padding:24px;text-align:center;position:sticky;top:0;z-index:10}
-header h1{font-weight:900;font-size:28px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.wrap{max-width:1200px;margin:auto;padding:15px}
-.search-wrap{max-width:600px;margin:15px auto;position:relative}
-.search-wrap input{width:100%;padding:16px 22px 16px 48px;border-radius:40px;border:2px solid #e5e7eb;font-size:15px;font-weight:600;outline:none}
-.search-wrap span{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
-.card{background:#fff;border-radius:18px;padding:20px 10px;text-align:center;border:1px solid #eee;cursor:pointer;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(0,0,0,.1);border-color:#8b5cf6}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:99;padding:12px;overflow:auto}
+header{background:#0a0a0a;color:#fff;padding:22px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-weight:900;font-size:26px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wrap{max-width:1200px;margin:auto;padding:14px}
+.search-wrap{max-width:600px;margin:14px auto;position:relative}
+.search-wrap input{width:100%;padding:15px 20px 15px 46px;border-radius:40px;border:2px solid #e5e7eb;font-size:14px;font-weight:600;outline:none}
+.search-wrap span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:11px}
+.card{background:#fff;border-radius:18px;padding:18px 10px;text-align:center;border:1px solid #eee;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.1);border-color:#8b5cf6}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:99;padding:10px;overflow:auto}
 .modal.show{display:flex;justify-content:center;align-items:flex-start}
-.box{background:#fff;width:100%;max-width:540px;border-radius:22px;padding:22px;margin:20px auto}
-.box h2{font-size:22px;font-weight:900}
-label{font-size:11px;font-weight:800;margin-top:12px;display:block;text-transform:uppercase;color:#374151}
-input,select{width:100%;padding:12px;border:1.5px solid #e5e7eb;border-radius:10px;margin-top:5px;font-size:14px;font-weight:600}
-.date-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px}
-.btn{width:100%;padding:14px;background:linear-gradient(90deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:16px;cursor:pointer}
+.box{background:#fff;width:100%;max-width:540px;border-radius:22px;padding:20px;margin:20px auto}
+.box h2{font-size:21px;font-weight:900}
+label{font-size:10.5px;font-weight:800;margin-top:13px;display:block;text-transform:uppercase;color:#374151;letter-spacing:.5px}
+input,select{width:100%;padding:11px 10px;border:1.5px solid #e5e7eb;border-radius:10px;margin-top:5px;font-size:13.5px;font-weight:600;outline:none}
+.date-row{display:grid;grid-template-columns:0.9fr 1.3fr 0.9fr;gap:6px}
+.date-row select{font-size:12.5px;padding:11px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#f8fafc;font-weight:700}
+.btn{width:100%;padding:13px;background:linear-gradient(90deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:16px;cursor:pointer;font-size:14px;letter-spacing:.5px}
 .res{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:14px;padding:14px;margin-top:14px;display:none;line-height:2;font-size:13px}
 .res.show{display:block}
-.x{float:right;font-size:26px;cursor:pointer}
-.big{font-size:20px;color:#7c3aed;font-weight:900}
+.x{float:right;font-size:26px;cursor:pointer;line-height:1}
+.big{font-size:19px;color:#7c3aed;font-weight:900;line-height:1.3}
 </style>
 </head>
 <body>
-<header><h1>EVERYDAY <span>TOOLS</span></h1></header>
+<header><h1>EVERYDAY <span>TOOLS</span> - 25 IN 1</h1></header>
 <div class="wrap">
 <div class="search-wrap"><span>🔍</span><input id="search" placeholder="Search EMI, BMI, GST, SIP, Age Pro..." oninput="filterTools()"></div>
 <div class="grid" id="grid"></div>
@@ -42,33 +43,33 @@ input,select{width:100%;padding:12px;border:1.5px solid #e5e7eb;border-radius:10
 const names=["Age Pro","BMI Pro","BMR Pro","EMI Pro","Home Loan Pro","Personal Loan Pro","SIP Pro","FD Pro","PPF Pro","RD Pro","GST Pro","VAT Pro","Discount Pro","Percentage Pro","Fuel Cost Pro","Time Duration Pro","Simple Interest Pro","Compound Interest Pro","Car Loan Pro","Credit Card Pro","Sales Tax Pro","Income Tax Pro","Profit Margin Pro","Inflation Pro","Gratuity Pro"];
 const icons=["🎂","⚖️","🔥","🏦","🏠","💳","📈","🏛️","💰","🔄","🧾","📊","🏷️","%","⛽","⏱️","💵","📈","🚗","💳","🛒","🇮🇳","📊","📉","🎁"];
 let cur=0; const grid=document.getElementById('grid');
-function render(list){grid.innerHTML=""; list.forEach(i=>{grid.innerHTML+=`<div class="card" onclick="openM(${i})"><div style="font-size:30px">${icons[i]}</div><b style="font-size:13px">${names[i]}</b></div>`;});}
+function render(list){grid.innerHTML=""; list.forEach(i=>{grid.innerHTML+=`<div class="card" onclick="openM(${i})"><div style="font-size:28px">${icons[i]}</div><b style="font-size:12.5px">${names[i]}</b></div>`;});}
 render(names.map((_,i)=>i));
 function filterTools(){let q=document.getElementById('search').value.toLowerCase(); let f=names.map((n,i)=>({n,i})).filter(o=>o.n.toLowerCase().includes(q)).map(o=>o.i); render(f);}
 function getSelectors(p){
-let d='<option value="">Day</option>'; for(let i=1;i<=31;i++) d+=`<option value="${i}">${i}</option>`;
-let m='<option value="">Month</option>'; let mn=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; for(let i=1;i<=12;i++) m+=`<option value="${i}">${i} - ${mn[i-1]}</option>`;
+let d='<option value="">Day</option>'; for(let i=1;i<=31;i++) d+=`<option value="${i}">${String(i).padStart(2,'0')}</option>`;
+let m='<option value="">Month</option>'; let mn=["January","February","March","April","May","June","July","August","September","October","November","December"]; for(let i=1;i<=12;i++) m+=`<option value="${i}">${mn[i-1]}</option>`;
 let y='<option value="">Year</option>'; for(let i=2026;i>=1;i--) y+=`<option value="${i}">${i}</option>`;
 return `<div class="date-row"><select id="${p}_d">${d}</select><select id="${p}_m">${m}</select><select id="${p}_y">${y}</select></div>`;
 }
-function getDate(p){let d=document.getElementById(p+'_d')?.value, m=document.getElementById(p+'_m')?.value, y=document.getElementById(p+'_y')?.value; if(!d||!m||!y) return null; return new Date(y,m-1,d);}
+function getDate(p){let d=document.getElementById(p+'_d')?.value, m=document.getElementById(p+'_m')?.value, y=document.getElementById(p+'_y')?.value; if(!d||!m||!y) return null; let dt=new Date(y,m-1,d); if(dt.getDate()!=d || dt.getMonth()!=m-1) return new Date('invalid'); return dt;}
 function openM(i){
 cur=i; document.getElementById('mtitle').innerText=names[i]; let h="";
-if(i==0) h=`<label>Birth Date - Empty (Scroll Select Day Month Year)</label>${getSelectors('b')}<label>End / Death Date (Empty = Today)</label>${getSelectors('e')}`;
-if(i==1) h=`<label>Height cm</label><input type="number" id="a" placeholder="170"><label>Weight kg</label><input type="number" id="b" placeholder="65">`;
+if(i==0) h=`<label>Birth Date (Scroll Day Month Year - Empty)</label>${getSelectors('b')}<label>End / Death Date (Empty = Today)</label>${getSelectors('e')}`;
+if(i==1) h=`<label>Height cm</label><input type="number" id="a" placeholder="e.g. 170"><label>Weight kg</label><input type="number" id="b" placeholder="e.g. 65">`;
 if(i==2) h=`<label>Gender</label><select id="a"><option value="m">Male</option><option value="f">Female</option></select><label>Age</label><input type="number" id="b" placeholder="25"><label>Height cm</label><input type="number" id="c" placeholder="170"><label>Weight kg</label><input type="number" id="d" placeholder="65">`;
 if(i==3||i==4||i==5) h=`<label>Loan Amount ₹</label><input type="number" id="a" placeholder="500000"><label>Interest %</label><input type="number" id="b" placeholder="9"><label>Years</label><input type="number" id="c" placeholder="5">`;
 if(i==6) h=`<label>Monthly SIP ₹</label><input type="number" id="a" placeholder="5000"><label>Return %</label><input type="number" id="b" placeholder="12"><label>Years</label><input type="number" id="c" placeholder="10">`;
 if(i==7) h=`<label>Principal ₹</label><input type="number" id="a" placeholder="100000"><label>Rate %</label><input type="number" id="b" placeholder="7"><label>Years</label><input type="number" id="c" placeholder="5">`;
 if(i==8) h=`<label>Yearly ₹</label><input type="number" id="a" placeholder="150000"><label>Rate %</label><input type="number" id="b" placeholder="7.1"><label>Years</label><input type="number" id="c" placeholder="15">`;
 if(i==9) h=`<label>Monthly ₹</label><input type="number" id="a" placeholder="5000"><label>Rate %</label><input type="number" id="b" placeholder="6.5"><label>Months</label><input type="number" id="c" placeholder="60">`;
-if(i==10||i==11) h=`<label>Amount ₹</label><input type="number" id="a" placeholder="1000"><label>${i==10?'GST':'VAT'} %</label><input type="number" id="b" placeholder="18"><label>Type</label><select id="c"><option value="ex">Exclusive</option><option value="in">Inclusive</option></select>`;
+if(i==10||i==11) h=`<label>Amount ₹</label><input type="number" id="a" placeholder="1000"><label>${i==10?'GST':'VAT'} %</label><input type="number" id="b" placeholder="18"><label>Type</label><select id="c"><option value="ex">Exclusive (Add Tax)</option><option value="in">Inclusive (Remove Tax)</option></select>`;
 if(i==12) h=`<label>Original Price ₹</label><input type="number" id="a" placeholder="1000"><label>Discount %</label><input type="number" id="b" placeholder="20">`;
 if(i==13) h=`<label>Total Value</label><input type="number" id="a" placeholder="500"><label>Percent %</label><input type="number" id="b" placeholder="15">`;
 if(i==14) h=`<label>Distance km</label><input type="number" id="a" placeholder="100"><label>Mileage km/l</label><input type="number" id="b" placeholder="15"><label>Price ₹/L</label><input type="number" id="c" placeholder="105">`;
 if(i==15) h=`<label>Start Date</label>${getSelectors('s')}<label>End Date</label>${getSelectors('e2')}`;
 if(i==16) h=`<label>Principal ₹</label><input type="number" id="a" placeholder="10000"><label>Rate %</label><input type="number" id="b" placeholder="8"><label>Years</label><input type="number" id="c" placeholder="2">`;
-if(i==17) h=`<label>Principal ₹</label><input type="number" id="a" placeholder="10000"><label>Rate %</label><input type="number" id="b" placeholder="8"><label>Years</label><input type="number" id="c" placeholder="5"><label>Compounds Per Year</label><input type="number" id="d" value="4">`;
+if(i==17) h=`<label>Principal ₹</label><input type="number" id="a" placeholder="10000"><label>Rate %</label><input type="number" id="b" placeholder="8"><label>Years</label><input type="number" id="c" placeholder="5"><label>Compounds/Year</label><input type="number" id="d" value="4">`;
 if(i==18) h=`<label>Car Price ₹</label><input type="number" id="a" placeholder="800000"><label>Down Payment ₹</label><input type="number" id="b" placeholder="100000"><label>Interest %</label><input type="number" id="c" placeholder="9"><label>Years</label><input type="number" id="d" placeholder="5">`;
 if(i==19) h=`<label>Due ₹</label><input type="number" id="a" placeholder="10000"><label>Monthly Interest %</label><input type="number" id="b" placeholder="3.5">`;
 if(i==20) h=`<label>Price ₹</label><input type="number" id="a" placeholder="1000"><label>Sales Tax %</label><input type="number" id="b" placeholder="8">`;
@@ -83,34 +84,46 @@ function gv(id){return parseFloat(document.getElementById(id)?.value)||0;}
 function calc(){
 let r=document.getElementById('mres'),out="",a=gv('a'),b=gv('b'),c=gv('c'),d=gv('d');
 if(cur==0){
-let birth=getDate('b'), end=getDate('e'); if(!birth){r.innerHTML="⚠️ Select Birth Day Month Year (Scroll)"; r.classList.add('show'); return;} if(!end) end=new Date();
-if(end<birth){r.innerHTML="End date before birth!"; r.classList.add('show'); return;}
+let birth=getDate('b'), end=getDate('e');
+if(!birth){r.innerHTML="⚠️ Please Select Birth Day Month Year"; r.classList.add('show'); return;}
+if(isNaN(birth.getTime())){r.innerHTML="⚠️ Invalid Birth Date (e.g. 31 Feb)"; r.classList.add('show'); return;}
+if(!end) end=new Date();
+if(isNaN(end.getTime())){r.innerHTML="⚠️ Invalid End Date"; r.classList.add('show'); return;}
+if(end<birth){r.innerHTML="End date cannot be before birth!"; r.classList.add('show'); return;}
 let diff=end-birth,sec=Math.floor(diff/1000),min=Math.floor(sec/60),hrs=Math.floor(min/60),days=Math.floor(hrs/24);
 let y=end.getFullYear()-birth.getFullYear(),m=end.getMonth()-birth.getMonth(),day=end.getDate()-birth.getDate(); if(day<0){m--;let pm=new Date(end.getFullYear(),end.getMonth(),0).getDate(); day+=pm;} if(m<0){y--;m+=12;}
-out=`<div class="big">${y} Y, ${m} M, ${day} D Lived</div>Total Months: <b>${(y*12+m).toLocaleString()} Months</b><br>Total Weeks: <b>${Math.floor(days/7).toLocaleString()} Weeks</b><br>Total Days: <b>${days.toLocaleString()} Days</b><br>Total Hours: <b>${hrs.toLocaleString()}</b><br>Total Minutes: <b>${min.toLocaleString()}</b><br>Total Seconds: <b>${sec.toLocaleString()}</b><br>Born: <b>${birth.toDateString()}</b><br>End: <b>${end.toDateString()}</b>`;
+let totalMonths=y*12+m; let totalWeeks=Math.floor(days/7);
+out=`<div class="big">${y} Y, ${m} M, ${day} D Lived</div>
+Total Months: <b>${totalMonths.toLocaleString()} Months</b><br>
+Total Weeks: <b>${totalWeeks.toLocaleString()} Weeks</b><br>
+Total Days: <b>${days.toLocaleString()} Days</b><br>
+Total Hours: <b>${hrs.toLocaleString()} Hours</b><br>
+Total Minutes: <b>${min.toLocaleString()} Minutes</b><br>
+Total Seconds: <b>${sec.toLocaleString()} Seconds</b><br>
+Born: <b>${birth.toDateString()}</b><br>
+End: <b>${end.toDateString()}</b>`;
 }
-else if(cur==1){let h=a/100,bmi=b/(h*h); out=`<div class="big">BMI: ${bmi.toFixed(2)}</div>Category: <b>${bmi<18.5?"Underweight":bmi<25?"Normal":bmi<30?"Overweight":"Obese"}</b>`;}
-else if(cur==2){let g=document.getElementById('a').value,bmr=g=='m'?88.362+13.397*d+4.799*c-5.677*b:447.593+9.247*d+3.098*c-4.33*b; out=`<div class="big">${bmr.toFixed(0)} kcal/day</div>Moderate Activity: <b>${(bmr*1.55).toFixed(0)}</b>`;}
-else if(cur==3||cur==4||cur==5){let rate=b/12/100,n=c*12,emi=a*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">EMI: ₹${emi.toFixed(0)}/month</div>Total Interest: <b>₹${(emi*n-a).toFixed(0)}</b><br>Total Pay: <b>₹${(emi*n).toFixed(0)}</b>`;}
-else if(cur==6){let ret=b/12/100,n=c*12,fv=a*((Math.pow(1+ret,n)-1)/ret)*(1+ret); out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Gain: <b>₹${(fv-a*n).toFixed(0)}</b>`;}
+else if(cur==1){let h=a/100,bmi=b/(h*h); out=`<div class="big">BMI: ${bmi.toFixed(2)}</div>Category: <b>${bmi<18.5?"Underweight":bmi<25?"Normal":bmi<30?"Overweight":"Obese"}</b><br>Ideal: <b>${(22*h*h).toFixed(1)} kg</b>`;}
+else if(cur==2){let g=document.getElementById('a').value,bmr=g=='m'?88.362+13.397*d+4.799*c-5.677*b:447.593+9.247*d+3.098*c-4.33*b; out=`<div class="big">${bmr.toFixed(0)} kcal/day</div>Moderate: <b>${(bmr*1.55).toFixed(0)} kcal</b>`;}
+else if(cur==3||cur==4||cur==5){let rate=b/12/100,n=c*12,emi=a*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">EMI: ₹${emi.toFixed(0)}/month</div>Total Interest: <b>₹${(emi*n-a).toFixed(0)}</b><br>Total: <b>₹${(emi*n).toFixed(0)}</b>`;}
+else if(cur==6){let ret=b/12/100,n=c*12,fv=a*((Math.pow(1+ret,n)-1)/ret)*(1+ret); out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Invested: ₹${(a*n).toLocaleString()}<br>Gain: <b>₹${(fv-a*n).toFixed(0)}</b>`;}
 else if(cur==7){let fv=a*Math.pow(1+b/100,c); out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Interest: <b>₹${(fv-a).toFixed(0)}</b>`;}
-else if(cur==8){let fv=a*(((Math.pow(1+b/100,c)-1)/(b/100))); out=`<div class="big">PPF: ₹${fv.toFixed(0)}</div>`;}
-else if(cur==9){let rate=b/12/100,fv=a*((Math.pow(1+rate,c)-1)/rate); out=`<div class="big">RD: ₹${fv.toFixed(0)}</div>`;}
+else if(cur==8){let fv=a*(((Math.pow(1+b/100,c)-1)/(b/100))); out=`<div class="big">PPF: ₹${fv.toFixed(0)}</div>Gain: <b>₹${(fv-a*c).toFixed(0)}</b>`;}
+else if(cur==9){let rate=b/12/100,fv=a*((Math.pow(1+rate,c)-1)/rate); out=`<div class="big">RD: ₹${fv.toFixed(0)}</div>Invested: <b>₹${(a*c).toLocaleString()}</b>`;}
 else if(cur==10||cur==11){let type=document.getElementById('c').value,tax,base,total; if(type=='ex'){tax=a*b/100; total=a+tax; base=a;}else{total=a; tax=a-a*100/(100+b); base=total-tax;} out=`<div class="big">${cur==10?'GST':'VAT'}: ₹${tax.toFixed(2)}</div>Base: ₹${base.toFixed(2)}<br>Total: ₹${total.toFixed(2)}`;}
-else if(cur==12){let save=a*b/100; out=`<div class="big">Pay: ₹${(a-save).toFixed(0)}</div>You Save: <b>₹${save.toFixed(0)}</b>`;}
-else if(cur==13){let res=a*b/100; out=`<div class="big">${b}% of ${a} = ${res}</div>`;}
-else if(cur==14){let fuel=a/b,cost=fuel*c; out=`<div class="big">Cost: ₹${cost.toFixed(0)}</div>Fuel: ${fuel.toFixed(2)} L`;}
-else if(cur==15){let s=getDate('s'),e=getDate('e2'); if(!s||!e){r.innerHTML="Select both dates"; r.classList.add('show'); return;} let days=Math.ceil(Math.abs(e-s)/(1000*60*60*24)); out=`<div class="big">${days} Days</div>`;}
-else if(cur==16){let si=a*b*c/100; out=`<div class="big">SI: ₹${si.toFixed(0)}</div>Total: ₹${(a+si).toFixed(0)}`;}
-else if(cur==17){let fv=a*Math.pow(1+b/100/d,d*c); out=`<div class="big">Total: ₹${fv.toFixed(0)}</div>Interest: ₹${(fv-a).toFixed(0)}`;}
-else if(cur==18){let loan=a-b,rate=c/12/100,n=d*12,emi=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">EMI: ₹${emi.toFixed(0)}</div>`;}
+else if(cur==12){let save=a*b/100; out=`<div class="big">Pay: ₹${(a-save).toFixed(0)}</div>Save: <b>₹${save.toFixed(0)}</b>`;}
+else if(cur==13){let res=a*b/100; out=`<div class="big">${b}% of ${a} = ${res}</div>Remaining: <b>${a-res}</b>`;}
+else if(cur==14){let fuel=a/b,cost=fuel*c; out=`<div class="big">Cost: ₹${cost.toFixed(0)}</div>Fuel: <b>${fuel.toFixed(2)} L</b>`;}
+else if(cur==15){let s=getDate('s'),e=getDate('e2'); if(!s||!e||isNaN(s)||isNaN(e)){r.innerHTML="Select both dates correctly"; r.classList.add('show'); return;} let days=Math.ceil(Math.abs(e-s)/(1000*60*60*24)); out=`<div class="big">${days} Days</div>Months: ${(days/30.44).toFixed(1)} | Years: ${(days/365.25).toFixed(2)}`;}
+else if(cur==16){let si=a*b*c/100; out=`<div class="big">Interest: ₹${si.toFixed(0)}</div>Total: <b>₹${(a+si).toFixed(0)}</b>`;}
+else if(cur==17){let fv=a*Math.pow(1+b/100/d,d*c); out=`<div class="big">Total: ₹${fv.toFixed(0)}</div>Interest: <b>₹${(fv-a).toFixed(0)}</b>`;}
+else if(cur==18){let loan=a-b,rate=c/12/100,n=d*12,emi=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">EMI: ₹${emi.toFixed(0)}</div>Loan: ₹${loan.toLocaleString()}`;}
 else if(cur==19){let intr=a*b/100; out=`<div class="big">Interest: ₹${intr.toFixed(0)}</div>Total: ₹${(a+intr).toFixed(0)}`;}
 else if(cur==20){let tax=a*b/100; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Total: ₹${(a+tax).toFixed(0)}`;}
-else if(cur==21){let tax=0; if(a>1000000)tax=(a-1000000)*0.3+112500; else if(a>500000)tax=(a-500000)*0.2+12500; else if(a>250000)tax=(a-250000)*0.05; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Net: ₹${(a-tax).toFixed(0)}`;}
-else if(cur==22){let profit=b-a,margin=profit/b*100; out=`<div class="big">Margin: ${margin.toFixed(2)}%</div>Profit: ₹${profit}`;}
-else if(cur==23){let fut=a/Math.pow(1+b/100,c); out=`<div class="big">Future Value: ₹${fut.toFixed(0)}</div>`;}
-else if(cur==24){let grat=(15*a*b)/26; out=`<div class="big">Gratuity: ₹${grat.toFixed(0)}</div>`;}
-
+else if(cur==21){let tax=0; if(a>1000000)tax=(a-1000000)*0.3+112500; else if(a>500000)tax=(a-500000)*0.2+12500; else if(a>250000)tax=(a-250000)*0.05; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Net: <b>₹${(a-tax).toFixed(0)}</b>`;}
+else if(cur==22){let profit=b-a,margin=profit/b*100; out=`<div class="big">Margin: ${margin.toFixed(2)}%</div>Profit: <b>₹${profit}</b>`;}
+else if(cur==23){let fut=a/Math.pow(1+b/100,c); out=`<div class="big">Future: ₹${fut.toFixed(0)}</div>Loss: ₹${(a-fut).toFixed(0)}`;}
+else if(cur==24){let grat=(15*a*b)/26; out=`<div class="big">Gratuity: ₹${grat.toFixed(0)}</div>Formula: (15×Salary×Years)/26`;}
 r.innerHTML=out; r.classList.add('show');
 }
 </script>
