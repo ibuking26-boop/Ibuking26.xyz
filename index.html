@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Tools - ibuking26.xyz</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+body{background:#f2f4f7}
+.head{background:#000;color:#fff;text-align:center;padding:18px;font-weight:900;font-size:18px;position:sticky;top:0;z-index:99}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border-radius:14px;padding:18px 8px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.08);cursor:pointer;border:1px solid #eee}
+.card b{font-size:13px;display:block;margin-top:6px}
+.num{background:#000;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+#calcBox{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;padding:15px}
+.box{background:#fff;width:100%;max-width:400px;border-radius:20px;padding:20px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:8px 0}
+button{width:100%;padding:12px;background:#000;color:#fff;border:none;border-radius:10px;font-weight:800;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="head">ibuking26.xyz - 100 TOOLS (1-100)</div>
+<div class="grid" id="grid"></div>
+
+<div id="calcBox"><div class="box">
+<h3 id="toolName">Calculator</h3>
+<input id="in1" type="number" placeholder="Enter Value 1">
+<input id="in2" type="number" placeholder="Enter Value 2 (if needed)">
+<button onclick="calculate()">Calculate</button>
+<h2 id="result" style="margin-top:12px;text-align:center"></h2>
+<button onclick="document.getElementById('calcBox').style.display='none'" style="background:#eee;color:#000">Close</button>
+</div></div>
+
+<script>
+let tools=["Age Calculator","BMI Calculator","EMI Calculator","GST Calculator","SIP Calculator","FD Calculator","PPF Calculator","Percentage Calculator","Discount Calculator","Profit Loss Calculator","Loan Calculator","Salary Calculator","Tip Calculator","Speed Calculator","Fuel Calculator","Electricity Calculator","Water Intake Calculator","Weight Converter","Length Converter","Area Converter","Temp Converter","Time Calculator","Date Calculator","Interest Calculator","Tax Calculator","BMR Calculator","Calorie Calculator","Water Calculator","Pregnancy Calculator","Heart Rate Calculator","Steps Calculator","Sleep Calculator","Grade Calculator","CGPA Calculator","GPA Calculator","Attendance Calculator","Exam Calculator","Fee Calculator","Scholarship Calculator","Study Loan Calculator","Area Calculator","Volume Calculator","Average Calculator","Fraction Calculator","Ratio Calculator","Square Root Calculator","Cube Calculator","LCM Calculator","HCF Calculator","Age Difference Calculator","Length Converter 2","Weight Converter 2","Temperature Converter 2","Speed Converter","Time Converter","Pressure Converter","Energy Converter","Data Converter","Power Converter","Angle Converter","Love Calculator","Lucky Number Calculator","QR Code Generator","Password Generator","Word Counter","Case Converter","Color Picker","Barcode Generator","Invoice Generator","Bill Splitter","Rent Calculator","Savings Calculator","Budget Calculator","Investment Calculator","Inflation Calculator","Retirement Calculator","Car Loan Calculator","Home Loan Calculator","Bike EMI Calculator","Fuel Cost Calculator","Mileage Calculator","Toll Calculator","Distance Calculator","Travel Time Calculator","Electricity Bill 2","Water Bill Calculator","Gas Bill Calculator","Phone Bill Calculator","Internet Bill Calculator","Shopping Discount Calculator","Grocery Calculator","Milk Calculator","Petrol Calculator","Diesel Calculator","Currency Converter","Crypto Converter","Gold Price Calculator","Silver Price Calculator","Name Numerology","Zodiac Calculator","Days Left Calculator","Countdown Calculator","BMI 2 Calculator","EMI 2 Calculator","Simple Interest Calculator","Compound Interest Calculator"];
+
+let grid=document.getElementById('grid');
+tools.forEach((t,i)=>{
+  grid.innerHTML+=`<div class="card" onclick="openCalc('${t}')"><div class="num">${i+1}</div><b>${t}</b></div>`;
+});
+
+let currentTool="";
+function openCalc(name){
+  currentTool=name;
+  document.getElementById('toolName').innerText=name;
+  document.getElementById('result').innerText="";
+  document.getElementById('in1').value="";
+  document.getElementById('in2').value="";
+  document.getElementById('calcBox').style.display='flex';
+}
+function calculate(){
+  let a=parseFloat(document.getElementById('in1').value)||0;
+  let b=parseFloat(document.getElementById('in2').value)||0;
+  let res=a+b;
+  if(currentTool.includes("BMI")) res=(a/((b/100)*(b/100))).toFixed(2);
+  if(currentTool.includes("Age")) res=2026-a+" Years";
+  document.getElementById('result').innerText="Result: "+res;
+}
+</script>
+</body>
+</html>
