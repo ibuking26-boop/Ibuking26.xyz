@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everyday Tools 26-35 Pro Pack - World Normal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
+body{background:#f6f7fb;color:#111}
+header{background:#0a0a0a;color:#fff;padding:18px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-weight:900;font-size:18px}
+header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wrap{max-width:1200px;margin:auto;padding:12px}
+.search-wrap{max-width:600px;margin:12px auto;position:relative}
+.search-wrap input{width:100%;padding:14px 20px 14px 44px;border-radius:40px;border:2px solid #e5e7eb;font-size:14px;font-weight:600;outline:none}
+.search-wrap span{position:absolute;left:14px;top:50%;transform:translateY(-50%)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:#fff;border-radius:18px;padding:18px 8px;text-align:center;border:1px solid #eee;cursor:pointer}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.1);border-color:#8b5cf6}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:99;padding:10px;overflow:auto}
+.modal.show{display:flex;justify-content:center;align-items:flex-start}
+.box{background:#fff;width:100%;max-width:540px;border-radius:20px;padding:18px;margin:20px auto}
+.box h2{font-size:18px;font-weight:900}
+label{font-size:10.5px;font-weight:800;margin-top:12px;display:block;text-transform:uppercase;color:#374151}
+input,select{width:100%;padding:11px 10px;border:1.5px solid #e5e7eb;border-radius:10px;margin-top:4px;font-size:13.5px;font-weight:600;outline:none}
+.btn{width:100%;padding:13px;background:linear-gradient(90deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:16px;cursor:pointer}
+.res{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:14px;padding:12px;margin-top:14px;display:none;line-height:1.9;font-size:13px}
+.res.show{display:block}
+.x{float:right;font-size:26px;cursor:pointer}
+.big{font-size:17px;color:#7c3aed;font-weight:900}
+.ad{border:2px dashed #8b5cf6;background:#f5f3ff;border-radius:12px;padding:8px;text-align:center;font-weight:800;color:#5b21b6;margin:10px 0;font-size:11px}
+</style>
+</head>
+<body>
+<header><h1>EVERYDAY <span>TOOLS</span> | 26-35 <span style="background:#fff;color:#000;padding:3px 8px;border-radius:20px;font-size:11px">PRO PACK</span></h1></header>
+<div class="wrap">
+<div class="search-wrap"><span>🔍</span><input id="search" placeholder="Search 10 Tools..." oninput="filterTools()"></div>
+<div class="ad">AD SPACE TOP</div>
+<div class="grid" id="grid"></div>
+<div class="ad">AD SPACE BOTTOM</div>
+</div>
+<div class="modal" id="modal" onclick="if(event.target==this)closeM()"><div class="box"><span class="x" onclick="closeM()">×</span><h2 id="mtitle"></h2><div id="minputs"></div><button class="btn" onclick="calc()">CALCULATE NOW</button><div class="res" id="mres"></div></div></div>
+<script>
+const names=["26. Loan Eligibility Pro","27. Credit Score Check Pro","28. Mutual Fund Return Pro","29. EPF Calculator Pro","30. Insurance Premium Pro","31. Gold Value Pro","32. Currency Converter Pro","33. Crypto Profit Pro","34. Rent Calculator Pro","35. Salary HRA Pro"];
+const icons=["🏦","💳","📊","🏦","🛡️","🪙","💱","₿","🏠","💼"];
+let cur=0; const grid=document.getElementById('grid');
+function render(list){grid.innerHTML=""; list.forEach(i=>{grid.innerHTML+=`<div class="card" onclick="openM(${i})"><div style="font-size:28px">${icons[i]}</div><b style="font-size:11px">${names[i]}</b></div>`;});}
+render(names.map((_,i)=>i));
+function filterTools(){let q=document.getElementById('search').value.toLowerCase(); let f=names.map((n,i)=>({n,i})).filter(o=>o.n.toLowerCase().includes(q)).map(o=>o.i); render(f);}
+function openM(i){cur=i; document.getElementById('mtitle').innerText=names[i]; let h="";
+if(i==0) h=`<label>Monthly Income</label><input type="number" id="a" placeholder="50000"><label>Existing EMI</label><input type="number" id="b" placeholder="5000"><label>Interest % Annual</label><input type="number" id="c" placeholder="9"><label>Tenure Years</label><input type="number" id="d" placeholder="10">`;
+if(i==1) h=`<label>Payment History Score (0-100)</label><input type="number" id="a" placeholder="90"><label>Credit Utilization %</label><input type="number" id="b" placeholder="30"><label>Years Credit History</label><input type="number" id="c" placeholder="5"><label>New Inquiries</label><input type="number" id="d" placeholder="1">`;
+if(i==2) h=`<label>Monthly SIP Amount</label><input type="number" id="a" placeholder="10000"><label>Expected Return %</label><input type="number" id="b" placeholder="12"><label>Years</label><input type="number" id="c" placeholder="15">`;
+if(i==3) h=`<label>Monthly Salary</label><input type="number" id="a" placeholder="50000"><label>Basic %</label><input type="number" id="b" placeholder="50"><label>EPF Interest %</label><input type="number" id="c" placeholder="8.25"><label>Service Years</label><input type="number" id="d" placeholder="20">`;
+if(i==4) h=`<label>Coverage Amount</label><input type="number" id="a" placeholder="1000000"><label>Your Age</label><input type="number" id="b" placeholder="30"><label>Policy Term Years</label><input type="number" id="c" placeholder="20"><label>Risk</label><select id="d"><option value="1">Low</option><option value="1.2">Medium</option><option value="1.5">High</option></select>`;
+if(i==5) h=`<label>Gold Weight grams</label><input type="number" id="a" placeholder="10"><label>Price Per Gram</label><input type="number" id="b" placeholder="65"><label>Making Charges %</label><input type="number" id="c" placeholder="10">`;
+if(i==6) h=`<label>Amount</label><input type="number" id="a" placeholder="1000"><label>Exchange Rate</label><input type="number" id="b" placeholder="83.5"><label>Fee %</label><input type="number" id="c" placeholder="1">`;
+if(i==7) h=`<label>Buy Price</label><input type="number" id="a" placeholder="40000"><label>Sell Price</label><input type="number" id="b" placeholder="65000"><label>Quantity</label><input type="number" id="c" placeholder="2"><label>Fees %</label><input type="number" id="d" placeholder="1">`;
+if(i==8) h=`<label>Monthly Rent</label><input type="number" id="a" placeholder="15000"><label>Maintenance</label><input type="number" id="b" placeholder="2000"><label>Deposit</label><input type="number" id="c" placeholder="30000"><label>Months</label><input type="number" id="d" placeholder="12">`;
+if(i==9) h=`<label>Basic Salary</label><input type="number" id="a" placeholder="40000"><label>HRA Received</label><input type="number" id="b" placeholder="15000"><label>Rent Paid</label><input type="number" id="c" placeholder="12000"><label>City</label><select id="d"><option value="0.5">Metro 50%</option><option value="0.4">Non-Metro 40%</option></select>`;
+document.getElementById('minputs').innerHTML=h; document.getElementById('mres').className='res'; document.getElementById('modal').classList.add('show');
+}
+function closeM(){document.getElementById('modal').classList.remove('show');}
+function gv(id){return parseFloat(document.getElementById(id)?.value)||0;}
+function fmt(n){return n.toLocaleString('en-IN');}
+function calc(){
+let r=document.getElementById('mres'),out="",a=gv('a'),b=gv('b'),c=gv('c'),d=gv('d');
+if(cur==0){let avail=(a-b)*0.6,rate=c/12/100,n=d*12,maxLoan=avail/rate*(1-1/Math.pow(1+rate,n)); let emi=maxLoan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">Max Loan: ${fmt(maxLoan.toFixed(0))}</div>Available EMI 60%: <b>${fmt(avail.toFixed(0))}</b><br>EMI: <b>${fmt(emi.toFixed(0))}</b><br>Total Payable: <b>${fmt((emi*n).toFixed(0))}</b><br>FOIR: <b>${(((b+emi)/a)*100).toFixed(1)}%</b>`;}
+else if(cur==1){let score=(a*0.35)+((100-b*2)*0.3)+(Math.min(c*5,30))+(Math.max(0,10-d*3)); score=Math.min(900,Math.max(300,Math.round(score*8+300))); let cat=score<580?"Poor":score<670?"Fair":score<740?"Good":score<800?"Very Good":"Excellent"; out=`<div class="big">Score: ${score} - ${cat}</div>Payment: <b>${a}%</b><br>Utilization: <b>${b}%</b><br>History: <b>${c} Years</b><br>Ideal <30% Utilization`;}
+else if(cur==2){let ret=b/12/100,n=c*12,fv=a*((Math.pow(1+ret,n)-1)/ret)*(1+ret),inv=a*n,gain=fv-inv; out=`<div class="big">Maturity: ${fmt(fv.toFixed(0))}</div>Invested: <b>${fmt(inv)}</b><br>Gain: <b>${fmt(gain.toFixed(0))}</b><br>Growth: <b>${(gain/inv*100).toFixed(1)}%</b> - <b>${(fv/inv).toFixed(2)}x</b>`;}
+else if(cur==3){let basic=a*b/100,monthly=basic*0.24,months=d*12,rate=c/12/100,fv=monthly*((Math.pow(1+rate,months)-1)/rate); out=`<div class="big">Corpus: ${fmt(fv.toFixed(0))}</div>Basic: <b>${fmt(basic.toFixed(0))}</b><br>Monthly EPF: <b>${fmt(monthly.toFixed(0))}</b><br>Contribution: <b>${fmt((monthly*months).toFixed(0))}</b><br>Interest: <b>${fmt((fv-monthly*months).toFixed(0))}</b>`;}
+else if(cur==4){let base=(a/1000)*2,ageF=1+(Math.max(0,b-25)*0.03),risk=parseFloat(document.getElementById('d').value),annual=base*ageF*risk*(c/10),monthly=annual/12; out=`<div class="big">Premium: ${fmt(monthly.toFixed(0))}/mo</div>Annual: <b>${fmt(annual.toFixed(0))}</b><br>Total Paid: <b>${fmt((annual*c).toFixed(0))}</b><br>Per 1000: <b>${(monthly/a*1000).toFixed(2)}</b>`;}
+else if(cur==5){let base=a*b,making=base*c/100,total=base+making; out=`<div class="big">Total: ${fmt(total.toFixed(0))}</div>Base: <b>${fmt(base.toFixed(0))}</b><br>Making: <b>${fmt(making.toFixed(0))}</b><br>Per 10g: <b>${fmt((total/a*10).toFixed(0))}</b>`;}
+else if(cur==6){let conv=a*b,fee=conv*c/100,final=conv-fee; out=`<div class="big">Final: ${fmt(final.toFixed(2))}</div>Gross: <b>${fmt(conv.toFixed(2))}</b><br>Fee: <b>${fmt(fee.toFixed(2))}</b><br>Effective Rate: <b>${(final/a).toFixed(4)}</b>`;}
+else if(cur==7){let buy=a*c,sell=b*c,gross=sell-buy,fees=(buy+sell)*d/100/2,net=gross-fees,roi=net/buy*100; out=`<div class="big">Net Profit: ${fmt(net.toFixed(0))}</div>Buy: <b>${fmt(buy.toFixed(0))}</b><br>Sell: <b>${fmt(sell.toFixed(0))}</b><br>Gross: <b>${fmt(gross.toFixed(0))}</b><br>Fees: <b>${fmt(fees.toFixed(0))}</b><br>ROI: <b>${roi.toFixed(2)}%</b>`;}
+else if(cur==8){let monthly=a+b,totalStay=monthly*d+c,avg=totalStay/d; out=`<div class="big">Total Cost: ${fmt(totalStay.toFixed(0))}</div>Monthly: <b>${fmt(monthly)}</b><br>Rent Paid: <b>${fmt((monthly*d).toFixed(0))}</b><br>Avg/mo: <b>${fmt(avg.toFixed(0))}</b>`;}
+else if(cur==9){let cityRate=parseFloat(document.getElementById('d').value),e1=b,e2=c-cityRate*a,e3=a*cityRate,exempt=Math.min(e1,Math.max(0,e2),e3),taxable=b-exempt; out=`<div class="big">Exempt HRA: ${fmt(exempt.toFixed(0))}</div>Taxable: <b>${fmt(taxable.toFixed(0))}</b><br>Rule1 Actual: <b>${fmt(e1)}</b><br>Rule2 Rent-10%: <b>${fmt(Math.max(0,e2).toFixed(0))}</b><br>Rule3 ${cityRate*100}% Basic: <b>${fmt(e3.toFixed(0))}</b>`;}
+r.innerHTML=out; r.classList.add('show');
+}
+</script>
+</body>
+</html>
