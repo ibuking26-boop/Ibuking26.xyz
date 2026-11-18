@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALL CALCULATOR - 25 IN 1 PRO | VVIP ULTRA</title>
+<style>
+:root{--bg:#f8fafc;--card:#ffffff;--text:#0f172a;--muted:#64748b;--primary:#4f46e5;--primary2:#7c3aed;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Segoe UI,Roboto,sans-serif}
+body{background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;padding:40px 20px;text-align:center}
+.header h1{font-size:32px}
+.container{max-width:1200px;margin:0 auto;padding:20px;display:grid;gap:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.card h2{font-size:20px;margin-bottom:4px;display:flex;gap:10px}
+.card h2 span{font-size:12px;background:#eef2ff;color:var(--primary);padding:2px 8px;border-radius:20px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+label{font-size:13px;font-weight:600;margin-bottom:4px;display:block}
+input,select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;font-size:14px}
+.btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;border:none;padding:12px;border-radius:10px;font-weight:700;cursor:pointer;margin-top:12px}
+.result{margin-top:16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:16px;display:none}
+.result.show{display:block}
+.r-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:14px}
+</style>
+</head>
+<body>
+<div class="header"><h1>ALL CALCULATOR - 25 IN 1 PRO</h1><p>VVIP Ultra Professional • Full Detail • No Currency Symbol • Worldwide</p></div>
+<div class="container">
+
+<!-- 1 AGE PRO - SPECIAL -->
+<div class="card"><h2>1. Age Pro <span>VVIP FULL</span></h2><div class="sub">Year 1 to 2026 support, 5000 years back. Both dates custom. Year Month Week Hours Minutes Seconds total.</div>
+<div class="grid2">
+<div><label>DOB Day</label><input type="number" id="age_d1" value="1"></div>
+<div><label>Month</label><input type="number" id="age_m1" value="1"></div>
+<div><label>Year (1-2026, 5000+ back)</label><input type="number" id="age_y1" value="1990"></div>
+<div><label>Target Day</label><input type="number" id="age_d2" value="18"></div>
+<div><label>Month</label><input type="number" id="age_m2" value="11"></div>
+<div><label>Year</label><input type="number" id="age_y2" value="2026"></div>
+</div><button class="btn" onclick="calcAge()">Calculate Full Age Detail</button><div class="result" id="res_age"></div></div>
+
+<!-- 2-25 All other cards -->
+<div class="card"><h2>2. BMI Pro</h2><div class="grid2"><div><label>Weight kg</label><input id="bmi_w" type="number"></div><div><label>Height cm</label><input id="bmi_h" type="number"></div></div><button class="btn" onclick="calcBMI()">Calculate</button><div class="result" id="res_bmi"></div></div>
+<div class="card"><h2>3. BMR Pro</h2><div class="grid2"><div><label>Weight kg</label><input id="bmr_w" type="number"></div><div><label>Height cm</label><input id="bmr_h" type="number"></div><div><label>Age</label><input id="bmr_age" type="number"></div><div><label>Gender</label><select id="bmr_g"><option>Male</option><option>Female</option></select></div></div><button class="btn" onclick="calcBMR()">Calculate</button><div class="result" id="res_bmr"></div></div>
+<div class="card"><h2>4. EMI Pro</h2><div class="grid2"><div><label>Loan Amount</label><input id="emi_p" type="number"></div><div><label>Annual Rate %</label><input id="emi_r" type="number"></div><div><label>Months</label><input id="emi_n" type="number"></div></div><button class="btn" onclick="calcEMI()">Calculate</button><div class="result" id="res_emi"></div></div>
+<div class="card"><h2>5. Home Loan Pro</h2><div class="grid2"><div><label>Home Price</label><input id="hl_price" type="number"></div><div><label>Down Payment</label><input id="hl_down" type="number"></div><div><label>Rate %</label><input id="hl_r" type="number"></div><div><label>Years</label><input id="hl_y" type="number"></div></div><button class="btn" onclick="calcHL()">Calculate</button><div class="result" id="res_hl"></div></div>
+<div class="card"><h2>6. Personal Loan Pro</h2><div class="grid2"><div><label>Loan Amount</label><input id="pl_p" type="number"></div><div><label>Rate %</label><input id="pl_r" type="number"></div><div><label>Months</label><input id="pl_n" type="number"></div><div><label>Fee %</label><input id="pl_fee" type="number" value="0"></div></div><button class="btn" onclick="calcPL()">Calculate</button><div class="result" id="res_pl"></div></div>
+<div class="card"><h2>7. SIP Pro</h2><div class="grid2"><div><label>Monthly Investment</label><input id="sip_m" type="number"></div><div><label>Return %</label><input id="sip_r" type="number"></div><div><label>Years</label><input id="sip_y" type="number"></div></div><button class="btn" onclick="calcSIP()">Calculate</button><div class="result" id="res_sip"></div></div>
+<div class="card"><h2>8. FD Pro</h2><div class="grid2"><div><label>Principal</label><input id="fd_p" type="number"></div><div><label>Rate %</label><input id="fd_r" type="number"></div><div><label>Years</label><input id="fd_y" type="number"></div></div><button class="btn" onclick="calcFD()">Calculate</button><div class="result" id="res_fd"></div></div>
+<div class="card"><h2>9. PPF Pro</h2><div class="grid2"><div><label>Yearly Investment</label><input id="ppf_y" type="number"></div><div><label>Rate %</label><input id="ppf_r" type="number"></div><div><label>Years</label><input id="ppf_t" type="number" value="15"></div></div><button class="btn" onclick="calcPPF()">Calculate</button><div class="result" id="res_ppf"></div></div>
+<div class="card"><h2>10. RD Pro</h2><div class="grid2"><div><label>Monthly Deposit</label><input id="rd_m" type="number"></div><div><label>Rate %</label><input id="rd_r" type="number"></div><div><label>Months</label><input id="rd_n" type="number"></div></div><button class="btn" onclick="calcRD()">Calculate</button><div class="result" id="res_rd"></div></div>
+<div class="card"><h2>11. GST Pro</h2><div class="grid2"><div><label>Amount</label><input id="gst_a" type="number"></div><div><label>GST %</label><input id="gst_p" type="number"></div><div><label>Type</label><select id="gst_t"><option value="add">Add GST</option><option value="remove">Remove GST</option></select></div></div><button class="btn" onclick="calcGST()">Calculate</button><div class="result" id="res_gst"></div></div>
+<div class="card"><h2>12. VAT Pro</h2><div class="grid2"><div><label>Amount</label><input id="vat_a" type="number"></div><div><label>VAT %</label><input id="vat_p" type="number"></div></div><button class="btn" onclick="calcVAT()">Calculate</button><div class="result" id="res_vat"></div></div>
+<div class="card"><h2>13. Discount Pro</h2><div class="grid2"><div><label>Original Price</label><input id="dis_o" type="number"></div><div><label>Discount %</label><input id="dis_p" type="number"></div></div><button class="btn" onclick="calcDIS()">Calculate</button><div class="result" id="res_dis"></div></div>
+<div class="card"><h2>14. Percentage Pro</
