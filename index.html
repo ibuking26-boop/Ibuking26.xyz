@@ -3,44 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Everyday Tools - 25 in 1</title>
+<title>Everyday Tools - 25 in 1 - Final</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
 body{background:#f6f7fb;color:#111}
-header{background:#0a0a0a;color:#fff;padding:24px;text-align:center}
-header h1{font-weight:900;font-size:28px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header{background:#0a0a0a;color:#fff;padding:24px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-weight:900;font-size:28px;letter-spacing:1px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .wrap{max-width:1200px;margin:auto;padding:15px}
+.search-wrap{max-width:600px;margin:15px auto;position:relative}
+.search-wrap input{width:100%;padding:16px 22px 16px 48px;border-radius:40px;border:2px solid #e5e7eb;font-size:15px;font-weight:600;outline:none;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.search-wrap span{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
-.card{background:#fff;border-radius:18px;padding:20px 10px;text-align:center;border:1px solid #eee;cursor:pointer;transition:.2s}
+.card{background:#fff;border-radius:18px;padding:20px 10px;text-align:center;border:1px solid #eee;cursor:pointer;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.03)}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(0,0,0,.1);border-color:#8b5cf6}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:99;padding:12px;overflow:auto}
-.modal.show{display:flex;justify-content:center}
-.box{background:#fff;width:100%;max-width:520px;border-radius:22px;padding:22px;height:fit-content;margin:20px auto}
+.card div{font-size:30px} .card b{font-size:13px;display:block;margin-top:6px;font-weight:800}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:none;z-index:99;padding:12px;overflow:auto}
+.modal.show{display:flex;justify-content:center;align-items:flex-start}
+.box{background:#fff;width:100%;max-width:540px;border-radius:22px;padding:22px;height:fit-content;margin:20px auto}
 .box h2{font-size:22px;font-weight:900}
 label{font-size:11px;font-weight:800;margin-top:12px;display:block;text-transform:uppercase;color:#374151}
-input,select{width:100%;padding:12px;border:1.5px solid #e5e7eb;border-radius:10px;margin-top:5px;font-size:14px;font-weight:600}
+input,select{width:100%;padding:12px;border:1.5px solid #e5e7eb;border-radius:10px;margin-top:5px;font-size:14px;font-weight:600;outline:none}
+input:focus{border-color:#8b5cf6}
 .btn{width:100%;padding:14px;background:linear-gradient(90deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:16px;cursor:pointer}
-.res{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:14px;padding:14px;margin-top:14px;display:none;line-height:2;font-size:13px}
+.res{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:14px;padding:14px;margin-top:14px;display:none;line-height:2;font-size:13.5px}
 .res.show{display:block}
-.x{float:right;font-size:24px;cursor:pointer}
+.x{float:right;font-size:26px;cursor:pointer}
 .big{font-size:20px;color:#7c3aed;font-weight:900}
 </style>
 </head>
 <body>
-<header><h1>EVERYDAY <span>TOOLS</span> - 25 IN 1</h1></header>
-<div class="wrap"><div class="grid" id="grid"></div></div>
-<div class="modal" id="modal" onclick="if(event.target==this)closeM()"><div class="box"><span class="x" onclick="closeM()">&times;</span><h2 id="mtitle"></h2><div id="minputs"></div><button class="btn" onclick="calc()">CALCULATE</button><div class="res" id="mres"></div></div></div>
+<header><h1>EVERYDAY <span>TOOLS</span></h1></header>
+<div class="wrap">
+<div class="search-wrap"><span>🔍</span><input id="search" placeholder="Search Tools... EMI, BMI, GST, SIP, Age Pro" oninput="filterTools()"></div>
+<div class="grid" id="grid"></div>
+</div>
+<div class="modal" id="modal" onclick="if(event.target==this)closeM()"><div class="box"><span class="x" onclick="closeM()">×</span><h2 id="mtitle"></h2><div id="minputs"></div><button class="btn" onclick="calc()">CALCULATE</button><div class="res" id="mres"></div></div></div>
+
 <script>
 const names=["Age Pro","BMI Pro","BMR Pro","EMI Pro","Home Loan Pro","Personal Loan Pro","SIP Pro","FD Pro","PPF Pro","RD Pro","GST Pro","VAT Pro","Discount Pro","Percentage Pro","Fuel Cost Pro","Time Duration Pro","Simple Interest Pro","Compound Interest Pro","Car Loan Pro","Credit Card Pro","Sales Tax Pro","Income Tax Pro","Profit Margin Pro","Inflation Pro","Gratuity Pro"];
 const icons=["🎂","⚖️","🔥","🏦","🏠","💳","📈","🏛️","💰","🔄","🧾","📊","🏷️","%","⛽","⏱️","💵","📈","🚗","💳","🛒","🇮🇳","📊","📉","🎁"];
-let cur=0; const grid=document.getElementById('grid');
-function render(){grid.innerHTML=""; names.forEach((n,i)=>{grid.innerHTML+=`<div class="card" onclick="openM(${i})"><div style="font-size:30px">${icons[i]}</div><b style="font-size:13px">${n}</b></div>`;});}
-render();
+let cur=0;
+const grid=document.getElementById('grid');
+function render(list){grid.innerHTML=""; list.forEach(i=>{grid.innerHTML+=`<div class="card" onclick="openM(${i})"><div>${icons[i]}</div><b>${names[i]}</b></div>`;});}
+render(names.map((_,i)=>i));
+function filterTools(){let q=document.getElementById('search').value.toLowerCase(); let filtered=names.map((n,i)=>({n,i})).filter(o=>o.n.toLowerCase().includes(q)).map(o=>o.i); render(filtered);}
+
 function openM(i){
-cur=i; document.getElementById('mtitle').innerText=names[i];
-let h="";
-if(i==0) h=`<label>Birth Date (Unlimited)</label><input type="date" id="a" value="1990-01-01" min="0001-01-01" max="9999-12-31"><label>End / Death Date (Empty = Today)</label><input type="date" id="b" min="0001-01-01" max="9999-12-31">`;
+cur=i; document.getElementById('mtitle').innerText=names[i]; let h="";
+if(i==0) h=`<label>Birth Date (Unlimited - Year 0001 to 9999)</label><input type="date" id="a" value="1990-01-01" min="0001-01-01" max="9999-12-31"><label>End / Death Date (Leave Empty = Today)</label><input type="date" id="b" min="0001-01-01" max="9999-12-31">`;
 if(i==1) h=`<label>Height (cm)</label><input type="number" id="a" value="170"><label>Weight (kg)</label><input type="number" id="b" value="65">`;
 if(i==2) h=`<label>Gender</label><select id="a"><option value="m">Male</option><option value="f">Female</option></select><label>Age</label><input type="number" id="b" value="25"><label>Height (cm)</label><input type="number" id="c" value="170"><label>Weight (kg)</label><input type="number" id="d" value="65">`;
 if(i==3||i==4||i==5) h=`<label>Loan Amount ₹</label><input type="number" id="a" value="500000"><label>Interest % Annual</label><input type="number" id="b" value="9"><label>Tenure Years</label><input type="number" id="c" value="5">`;
@@ -62,47 +73,50 @@ if(i==20) h=`<label>Product Price ₹</label><input type="number" id="a" value="
 if(i==21) h=`<label>Annual Income ₹</label><input type="number" id="a" value="800000">`;
 if(i==22) h=`<label>Cost Price ₹</label><input type="number" id="a" value="500"><label>Selling Price ₹</label><input type="number" id="b" value="700">`;
 if(i==23) h=`<label>Current Amount ₹</label><input type="number" id="a" value="100000"><label>Inflation %</label><input type="number" id="b" value="6"><label>After Years</label><input type="number" id="c" value="10">`;
-if(i==24) h=`<label>Last Salary ₹ (Basic+DA)</label><input type="number" id="a" value="50000"><label>Years of Service</label><input type="number" id="b" value="7">`;
-
+if(i==24) h=`<label>Last Salary ₹</label><input type="number" id="a" value="50000"><label>Years of Service</label><input type="number" id="b" value="7">`;
 document.getElementById('minputs').innerHTML=h; document.getElementById('mres').className='res'; document.getElementById('modal').classList.add('show');
 }
 function closeM(){document.getElementById('modal').classList.remove('show');}
 function gv(id){return parseFloat(document.getElementById(id)?.value)||0;}
 function calc(){
-let r=document.getElementById('mres'); let out=""; let a=gv('a'),b=gv('b'),c=gv('c'),d=gv('d');
-
+let r=document.getElementById('mres'),out="",a=gv('a'),b=gv('b'),c=gv('c'),d=gv('d');
 if(cur==0){
-let bv=document.getElementById('a').value, ev=document.getElementById('b').value;
-if(!bv){r.innerHTML="Select Birth Date"; r.classList.add('show'); return;}
-let birth=new Date(bv), end=ev?new Date(ev):new Date();
-if(end<birth){r.innerHTML="End date before birth!"; r.classList.add('show'); return;}
-let diff=end-birth, sec=Math.floor(diff/1000), min=Math.floor(sec/60), hrs=Math.floor(min/60), days=Math.floor(hrs/24);
-let y=end.getFullYear()-birth.getFullYear(), m=end.getMonth()-birth.getMonth(), day=end.getDate()-birth.getDate();
-if(day<0){m--; let pm=new Date(end.getFullYear(),end.getMonth(),0).getDate(); day+=pm;} if(m<0){y--; m+=12;}
-out=`<div class="big">${y} Y, ${m} M, ${day} D Lived</div>Total Days: <b>${days.toLocaleString()}</b><br>Total Hours: <b>${hrs.toLocaleString()}</b><br>Total Minutes: <b>${min.toLocaleString()}</b><br>Total Seconds: <b>${sec.toLocaleString()}</b><br>Born: <b>${birth.toDateString()}</b><br>End: <b>${end.toDateString()}</b>`;
+let bv=document.getElementById('a').value,ev=document.getElementById('b').value; if(!bv){r.innerHTML="Select Birth Date"; r.classList.add('show'); return;}
+let birth=new Date(bv),end=ev?new Date(ev):new Date(); if(end<birth){r.innerHTML="End date before birth!"; r.classList.add('show'); return;}
+let diff=end-birth,sec=Math.floor(diff/1000),min=Math.floor(sec/60),hrs=Math.floor(min/60),days=Math.floor(hrs/24);
+let y=end.getFullYear()-birth.getFullYear(),m=end.getMonth()-birth.getMonth(),day=end.getDate()-birth.getDate(); if(day<0){m--;let pm=new Date(end.getFullYear(),end.getMonth(),0).getDate();day+=pm;} if(m<0){y--;m+=12;}
+let totalMonths=y*12+m; let totalWeeks=Math.floor(days/7);
+out=`<div class="big">${y} Y, ${m} M, ${day} D Lived</div>
+Total Months: <b>${totalMonths.toLocaleString()} Months</b><br>
+Total Weeks: <b>${totalWeeks.toLocaleString()} Weeks</b><br>
+Total Days: <b>${days.toLocaleString()} Days</b><br>
+Total Hours: <b>${hrs.toLocaleString()} Hours</b><br>
+Total Minutes: <b>${min.toLocaleString()} Minutes</b><br>
+Total Seconds: <b>${sec.toLocaleString()} Seconds</b><br>
+Born: <b>${birth.toDateString()}</b><br>
+End: <b>${end.toDateString()}</b>`;
 }
-else if(cur==1){let h=a/100, bmi=b/(h*h), cat=bmi<18.5?"Underweight":bmi<25?"Normal":bmi<30?"Overweight":"Obese"; out=`<div class="big">BMI: ${bmi.toFixed(2)}</div>Category: <b>${cat}</b><br>Height: ${a} cm<br>Weight: ${b} kg<br>Ideal Weight: <b>${(22*h*h).toFixed(1)} kg</b><br>Health: <b>${cat}</b>`;}
-else if(cur==2){let g=document.getElementById('a').value, bmr=g=='m'?88.362+13.397*d+4.799*c-5.677*b:447.593+9.247*d+3.098*c-4.33*b; out=`<div class="big">${bmr.toFixed(0)} kcal/day</div>BMR: <b>${bmr.toFixed(0)}</b><br>Light Activity: <b>${(bmr*1.375).toFixed(0)}</b><br>Moderate: <b>${(bmr*1.55).toFixed(0)}</b><br>Active: <b>${(bmr*1.725).toFixed(0)}</b>`;}
-else if(cur==3||cur==4||cur==5){let rate=b/12/100, n=c*12, emi=a*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1), total=emi*n, intr=total-a; out=`<div class="big">EMI: ₹${emi.toFixed(0)}/month</div>Loan: <b>₹${a.toLocaleString()}</b><br>Interest: <b>₹${intr.toFixed(0)}</b><br>Total Pay: <b>₹${total.toFixed(0)}</b><br>Tenure: <b>${c} Years (${n} months)</b><br>Rate: <b>${b}%</b>`;}
-else if(cur==6){let ret=b/12/100, n=c*12, fv=a*((Math.pow(1+ret,n)-1)/ret)*(1+ret), inv=a*n, gain=fv-inv; out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b><br>Monthly: <b>₹${a}</b><br>Return: <b>${b}% for ${c}Y</b>`;}
-else if(cur==7){let fv=a*Math.pow(1+b/100,c), intr=fv-a; out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Principal: <b>₹${a.toLocaleString()}</b><br>Interest: <b>₹${intr.toFixed(0)}</b><br>Rate: <b>${b}%</b><br>Years: <b>${c}</b>`;}
-else if(cur==8){let fv=a*(((Math.pow(1+b/100,c)-1)/(b/100))), inv=a*c, gain=fv-inv; out=`<div class="big">PPF: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b><br>Yearly: <b>₹${a}</b><br>Rate: <b>${b}%</b>`;}
-else if(cur==9){let rate=b/12/100, fv=a*((Math.pow(1+rate,c)-1)/rate), inv=a*c, gain=fv-inv; out=`<div class="big">RD: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b><br>Monthly: <b>₹${a}</b>`;}
-else if(cur==10){let type=document.getElementById('c').value, taxAmt, base, total; if(type=='ex'){taxAmt=a*b/100; total=a+taxAmt; base=a;}else{total=a; taxAmt=a - a*100/(100+b); base=total-taxAmt;} out=`<div class="big">GST: ₹${taxAmt.toFixed(2)}</div>Base: <b>₹${base.toFixed(2)}</b><br>GST ${b}%: <b>₹${taxAmt.toFixed(2)}</b><br>Total: <b>₹${total.toFixed(2)}</b>`;}
-else if(cur==11){let type=document.getElementById('c').value, taxAmt, base, total; if(type=='ex'){taxAmt=a*b/100; total=a+taxAmt; base=a;}else{total=a; taxAmt=a - a*100/(100+b); base=total-taxAmt;} out=`<div class="big">VAT: ₹${taxAmt.toFixed(2)}</div>Base: <b>₹${base.toFixed(2)}</b><br>VAT ${b}%: <b>₹${taxAmt.toFixed(2)}</b><br>Total: <b>₹${total.toFixed(2)}</b>`;}
-else if(cur==12){let save=a*b/100, pay=a-save; out=`<div class="big">Pay: ₹${pay.toFixed(0)}</div>Original: <b>₹${a}</b><br>Discount ${b}%: <b>₹${save.toFixed(0)} OFF</b><br>You Save: <b>₹${save.toFixed(0)}</b>`;}
-else if(cur==13){let res=a*b/100; out=`<div class="big">${b}% of ${a} = ${res}</div>Value: <b>${a}</b><br>Percent: <b>${b}%</b><br>Result: <b>${res}</b><br>Remaining: <b>${a-res}</b>`;}
-else if(cur==14){let fuel=a/b, cost=fuel*c; out=`<div class="big">Trip Cost: ₹${cost.toFixed(0)}</div>Distance: <b>${a} km</b><br>Mileage: <b>${b} km/l</b><br>Fuel: <b>${fuel.toFixed(2)} L</b><br>Price: <b>₹${c}/L</b>`;}
-else if(cur==15){let s=new Date(document.getElementById('a').value), e=new Date(document.getElementById('b').value), diff=Math.abs(e-s), days=Math.ceil(diff/(1000*60*60*24)); out=`<div class="big">${days} Days</div>Days: <b>${days}</b><br>Months: <b>${(days/30.44).toFixed(1)}</b><br>Years: <b>${(days/365.25).toFixed(2)}</b><br>Hours: <b>${days*24}</b>`;}
-else if(cur==16){let si=a*b*c/100, total=a+si; out=`<div class="big">Interest: ₹${si.toFixed(0)}</div>Principal: <b>₹${a.toLocaleString()}</b><br>Rate: <b>${b}%</b><br>Time: <b>${c}Y</b><br>Total: <b>₹${total.toFixed(0)}</b>`;}
-else if(cur==17){let rate=b/100, fv=a*Math.pow(1+rate/d,d*c), intr=fv-a; out=`<div class="big">Total: ₹${fv.toFixed(0)}</div>Principal: <b>₹${a.toLocaleString()}</b><br>Interest: <b>₹${intr.toFixed(0)}</b><br>Rate: <b>${b}% compounded ${d}×/year</b><br>Years: <b>${c}</b>`;}
-else if(cur==18){let loan=a-b, rate=c/12/100, n=d*12, emi=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1), total=emi*n; out=`<div class="big">Car EMI: ₹${emi.toFixed(0)}/month</div>Car Price: <b>₹${a.toLocaleString()}</b><br>Down: <b>₹${b.toLocaleString()}</b><br>Loan: <b>₹${loan.toLocaleString()}</b><br>Total Pay: <b>₹${total.toFixed(0)}</b>`;}
-else if(cur==19){let intr=a*b/100, total=a+intr, minDue=a*0.05; out=`<div class="big">Interest: ₹${intr.toFixed(0)}</div>Due: <b>₹${a.toLocaleString()}</b><br>Rate: <b>${b}% monthly</b><br>Total with Interest: <b>₹${total.toFixed(0)}</b><br>Min Due (5%): <b>₹${minDue.toFixed(0)}</b>`;}
-else if(cur==20){let tax=a*b/100, total=a+tax; out=`<div class="big">Tax: ₹${tax.toFixed(2)}</div>Price: <b>₹${a}</b><br>Sales Tax ${b}%: <b>₹${tax.toFixed(2)}</b><br>Total: <b>₹${total.toFixed(2)}</b>`;}
-else if(cur==21){let tax=0; if(a>1000000) tax=(a-1000000)*0.3+112500; else if(a>500000) tax=(a-500000)*0.2+12500; else if(a>250000) tax=(a-250000)*0.05; let net=a-tax; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Income: <b>₹${a.toLocaleString()}</b><br>Tax: <b>₹${tax.toFixed(0)}</b><br>Net: <b>₹${net.toFixed(0)}</b><br>Rate: <b>${(tax/a*100).toFixed(1)}%</b>`;}
-else if(cur==22){let profit=b-a, margin=profit/b*100, markup=profit/a*100; out=`<div class="big">Margin: ${margin.toFixed(2)}%</div>Cost: <b>₹${a}</b><br>Sell: <b>₹${b}</b><br>Profit: <b>₹${profit}</b><br>Margin: <b>${margin.toFixed(2)}%</b><br>Markup: <b>${markup.toFixed(2)}%</b>`;}
-else if(cur==23){let fut=a/Math.pow(1+b/100,c), loss=a-fut; out=`<div class="big">Future Value: ₹${fut.toFixed(0)}</div>Today: <b>₹${a.toLocaleString()}</b><br>After ${c}Y at ${b}% inflation: <b>₹${fut.toFixed(0)}</b><br>Loss: <b>₹${loss.toFixed(0)}</b>`;}
-else if(cur==24){let grat=(15*a*b)/26; out=`<div class="big">Gratuity: ₹${grat.toFixed(0)}</div>Salary: <b>₹${a.toLocaleString()}</b><br>Years: <b>${b}</b><br>Formula: (15×Salary×Years)/26<br>Min 5 years required`;}
+else if(cur==1){let h=a/100,bmi=b/(h*h),cat=bmi<18.5?"Underweight":bmi<25?"Normal":bmi<30?"Overweight":"Obese"; out=`<div class="big">BMI: ${bmi.toFixed(2)}</div>Category: <b>${cat}</b><br>Ideal Weight: <b>${(22*h*h).toFixed(1)} kg</b>`;}
+else if(cur==2){let g=document.getElementById('a').value,bmr=g=='m'?88.362+13.397*d+4.799*c-5.677*b:447.593+9.247*d+3.098*c-4.33*b; out=`<div class="big">${bmr.toFixed(0)} kcal/day</div>Light: <b>${(bmr*1.375).toFixed(0)}</b> | Moderate: <b>${(bmr*1.55).toFixed(0)}</b>`;}
+else if(cur==3||cur==4||cur==5){let rate=b/12/100,n=c*12,emi=a*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1),total=emi*n,intr=total-a; out=`<div class="big">EMI: ₹${emi.toFixed(0)}/month</div>Loan: <b>₹${a.toLocaleString()}</b><br>Interest: <b>₹${intr.toFixed(0)}</b><br>Total: <b>₹${total.toFixed(0)}</b>`;}
+else if(cur==6){let ret=b/12/100,n=c*12,fv=a*((Math.pow(1+ret,n)-1)/ret)*(1+ret),inv=a*n,gain=fv-inv; out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b>`;}
+else if(cur==7){let fv=a*Math.pow(1+b/100,c); out=`<div class="big">Maturity: ₹${fv.toFixed(0)}</div>Interest: <b>₹${(fv-a).toFixed(0)}</b>`;}
+else if(cur==8){let fv=a*(((Math.pow(1+b/100,c)-1)/(b/100))); out=`<div class="big">PPF: ₹${fv.toFixed(0)}</div>Gain: <b>₹${(fv-a*c).toFixed(0)}</b>`;}
+else if(cur==9){let rate=b/12/100,fv=a*((Math.pow(1+rate,c)-1)/rate); out=`<div class="big">RD: ₹${fv.toFixed(0)}</div>Invested: <b>₹${(a*c).toLocaleString()}</b>`;}
+else if(cur==10||cur==11){let type=document.getElementById('c').value,taxAmt,base,total; if(type=='ex'){taxAmt=a*b/100; total=a+taxAmt; base=a;}else{total=a; taxAmt=a-a*100/(100+b); base=total-taxAmt;} out=`<div class="big">${cur==10?'GST':'VAT'}: ₹${taxAmt.toFixed(2)}</div>Base: <b>₹${base.toFixed(2)}</b><br>Total: <b>₹${total.toFixed(2)}</b>`;}
+else if(cur==12){let save=a*b/100,pay=a-save; out=`<div class="big">Pay: ₹${pay.toFixed(0)}</div>Save: <b>₹${save.toFixed(0)}</b>`;}
+else if(cur==13){let res=a*b/100; out=`<div class="big">${b}% of ${a} = ${res}</div>Remaining: <b>${a-res}</b>`;}
+else if(cur==14){let fuel=a/b,cost=fuel*c; out=`<div class="big">Cost: ₹${cost.toFixed(0)}</div>Fuel: <b>${fuel.toFixed(2)} L</b>`;}
+else if(cur==15){let s=new Date(document.getElementById('a').value),e=new Date(document.getElementById('b').value),days=Math.ceil(Math.abs(e-s)/(1000*60*60*24)); out=`<div class="big">${days} Days</div>Months: <b>${(days/30.44).toFixed(1)}</b> | Years: <b>${(days/365.25).toFixed(2)}</b>`;}
+else if(cur==16){let si=a*b*c/100; out=`<div class="big">Interest: ₹${si.toFixed(0)}</div>Total: <b>₹${(a+si).toFixed(0)}</b>`;}
+else if(cur==17){let fv=a*Math.pow(1+b/100/d,d*c); out=`<div class="big">Total: ₹${fv.toFixed(0)}</div>Interest: <b>₹${(fv-a).toFixed(0)}</b>`;}
+else if(cur==18){let loan=a-b,rate=c/12/100,n=d*12,emi=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`<div class="big">EMI: ₹${emi.toFixed(0)}</div>Loan: <b>₹${loan.toLocaleString()}</b>`;}
+else if(cur==19){let intr=a*b/100; out=`<div class="big">Interest: ₹${intr.toFixed(0)}</div>Total Due: <b>₹${(a+intr).toFixed(0)}</b><br>Min Due: <b>₹${(a*0.05).toFixed(0)}</b>`;}
+else if(cur==20){let tax=a*b/100; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Total: <b>₹${(a+tax).toFixed(0)}</b>`;}
+else if(cur==21){let tax=0; if(a>1000000)tax=(a-1000000)*0.3+112500; else if(a>500000)tax=(a-500000)*0.2+12500; else if(a>250000)tax=(a-250000)*0.05; out=`<div class="big">Tax: ₹${tax.toFixed(0)}</div>Net: <b>₹${(a-tax).toFixed(0)}</b>`;}
+else if(cur==22){let profit=b-a,margin=profit/b*100; out=`<div class="big">Margin: ${margin.toFixed(2)}%</div>Profit: <b>₹${profit}</b>`;}
+else if(cur==23){let fut=a/Math.pow(1+b/100,c); out=`<div class="big">Future Value: ₹${fut.toFixed(0)}</div>Loss: <b>₹${(a-fut).toFixed(0)}</b>`;}
+else if(cur==24){let grat=(15*a*b)/26; out=`<div class="big">Gratuity: ₹${grat.toFixed(0)}</div>Years: <b>${b}</b>`;}
 
 r.innerHTML=out; r.classList.add('show');
 }
