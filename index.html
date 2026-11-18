@@ -2,41 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IBUKING26 - VVIP Booking Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HK RETAIL - Premium Menswear</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0a0a12;color:#fff}
-header{padding:20px;display:flex;justify-content:space-between;align-items:center;background:#00000080;backdrop-filter:blur(10px);position:fixed;width:100%;top:0;z-index:10}
-.logo{font-weight:900;font-size:22px;letter-spacing:2px;color:#ffcc00}
-.logo span{color:#fff}
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;background:radial-gradient(circle at top,#1a1a4a,#0a0a12)}
-.hero h1{font-size:42px;font-weight:900;line-height:1.1}
-.hero h1 span{color:#ffcc00}
-.hero p{margin:15px 0 25px;color:#aaa;max-width:400px}
-.btn{padding:15px 35px;background:#ffcc00;color:#000;font-weight:800;border-radius:50px;border:none;font-size:16px}
-.btn2{padding:12px 25px;background:transparent;border:1px solid #333;color:#fff;border-radius:50px;margin-left:10px}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:20px;margin-top:-50px}
-.card{background:#151525;padding:20px;border-radius:20px;border:1px solid #222}
-.card h3{color:#ffcc00;margin-bottom:5px}
-.price{font-size:28px;font-weight:900;margin:10px 0}
-.footer{text-align:center;padding:30px;color:#555;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif}
+body{background:#ffffff;color:#111}
+header{padding:18px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:10}
+.logo{font-weight:900;font-size:22px;letter-spacing:1px} .logo span{color:#c80000}
+nav a{margin-left:20px;text-decoration:none;color:#111;font-weight:600;font-size:14px}
+.hero{padding:70px 5%;display:flex;flex-wrap:wrap;align-items:center;gap:30px;background:#f9f9f9}
+.hero-text{flex:1;min-width:280px} .hero-text h1{font-size:48px;font-weight:900;line-height:1.1} .hero-text h1 span{color:#c80000}
+.hero-text p{margin:20px 0;color:#555;font-size:18px}
+.btn{padding:14px 28px;background:#111;color:#fff;border:none;font-weight:700;cursor:pointer;display:inline-block;text-decoration:none}
+.btn-red{background:#c80000}
+.products{padding:60px 5%} .products h2{font-size:32px;margin-bottom:30px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{border:1px solid #eee;padding:15px;text-align:center}
+.card img{width:100%;height:300px;object-fit:cover;background:#f0f0f0}
+.card h3{margin:15px 0 5px;font-size:18px} .price{color:#c80000;font-weight:800}
+footer{background:#111;color:#fff;padding:40px 5%;text-align:center;margin-top:40px}
 </style>
 </head>
 <body>
-<header><div class="logo">IBUKING<span>26</span></div><div style="font-size:12px;background:#ffcc00;color:#000;padding:5px 12px;border-radius:20px;font-weight:800">LIVE</div></header>
-<div class="hero">
-<h1>BOOK YOUR<br><span>VVIP EXPERIENCE</span></h1>
-<p>India's No.1 Premium Booking Platform - Hotels, Events, Travels & More at Best Price</p>
-<div><button class="btn" onclick="alert('Booking Started! Contact: IBUKING26')">BOOK NOW</button><button class="btn2">Explore</button></div>
+<header>
+<div class="logo">HK <span>RETAIL</span></div>
+<nav><a href="#">HOME</a><a href="#">SHOP</a><a href="#">COLLECTION</a><a href="#">CONTACT</a></nav>
+</header>
+<section class="hero">
+<div class="hero-text">
+<h1>PREMIUM <br><span>MENSWEAR</span> <br>FOR EVERY DAY</h1>
+<p>HK Retail - Where Style Meets Comfort. Best quality shirts, jeans & streetwear in India.</p>
+<a class="btn btn-red" href="#">SHOP NOW - 50% OFF</a>
 </div>
-<div class="cards">
-<div class="card"><h3>⭐ Hotel Booking</h3><p style="font-size:12px;color:#888">5 Star Hotels at 50% OFF</p><div class="price">₹999</div><p style="font-size:12px">per night onwards</p></div>
-<div class="card"><h3>✈️ Travel</h3><p style="font-size:12px;color:#888">Domestic & International</p><div class="price">₹4999</div><p style="font-size:12px">packages start</p></div>
-<div class="card"><h3>🎉 Events</h3><p style="font-size:12px;color:#888">Concert, Party, Shows</p><div class="price">₹299</div><p style="font-size:12px">tickets start</p></div>
-<div class="card"><h3>🏖️ Resorts</h3><p style="font-size:12px;color:#888">Luxury & Budget Resorts</p><div class="price">₹1499</div><p style="font-size:12px">best deals</p></div>
+<div style="flex:1;min-width:280px"><img src="https://images.unsplash.com/photo-1488167463357-2f17c0d1ca95?w=600" style="width:100%"></div>
+</section>
+<section class="products">
+<h2>NEW ARRIVALS</h2>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"><h3>HK Premium Shirt</h3><div class="price">₹799 <s style="color:#999;font-weight:400">₹1499</s></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400"><h3>HK Street Hoodie</h3><div class="price">₹1199</div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400"><h3>HK Slim Jeans</h3><div class="price">₹1299</div></div>
 </div>
-<div style="padding:20px"><div style="background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:20px;border-radius:20px;text-align:center"><h2 style="font-weight:900">GET 26% EXTRA OFF</h2><p>Use Code: IBUKING26</p></div></div>
-<div class="footer">© 2026 IBUKING26.XYZ - All Rights Reserved<br>Made with ❤️ for VVIP Customers</div>
+</section>
+<footer>
+<h2>HK RETAIL</h2>
+<p style="margin:15px 0;color:#aaa">Dm to order on Instagram / WhatsApp</p>
+<p>© 2026 HK Retail - All Rights Reserved</p>
+</footer>
 </body>
 </html>
