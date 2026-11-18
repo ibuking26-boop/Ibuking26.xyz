@@ -1,53 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HK RETAIL - Premium Menswear</title>
+<title>Everyday Tools - 25 in 1</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#ffffff;color:#111}
-header{padding:18px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:10}
-.logo{font-weight:900;font-size:22px;letter-spacing:1px} .logo span{color:#c80000}
-nav a{margin-left:20px;text-decoration:none;color:#111;font-weight:600;font-size:14px}
-.hero{padding:70px 5%;display:flex;flex-wrap:wrap;align-items:center;gap:30px;background:#f9f9f9}
-.hero-text{flex:1;min-width:280px} .hero-text h1{font-size:48px;font-weight:900;line-height:1.1} .hero-text h1 span{color:#c80000}
-.hero-text p{margin:20px 0;color:#555;font-size:18px}
-.btn{padding:14px 28px;background:#111;color:#fff;border:none;font-weight:700;cursor:pointer;display:inline-block;text-decoration:none}
-.btn-red{background:#c80000}
-.products{padding:60px 5%} .products h2{font-size:32px;margin-bottom:30px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{border:1px solid #eee;padding:15px;text-align:center}
-.card img{width:100%;height:300px;object-fit:cover;background:#f0f0f0}
-.card h3{margin:15px 0 5px;font-size:18px} .price{color:#c80000;font-weight:800}
-footer{background:#111;color:#fff;padding:40px 5%;text-align:center;margin-top:40px}
+*{box-sizing:border-box;font-family:system-ui;margin:0;padding:0}
+body{background:#f5f7fb}
+h1{background:#111;color:#fff;text-align:center;padding:20px;font-size:26px} h1 span{color:#8b5cf6}
+.wrap{max-width:1100px;margin:auto;padding:15px}
+#search{width:100%;max-width:500px;display:block;margin:15px auto;padding:14px;border-radius:30px;border:2px solid #ddd;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:1px solid #eee;cursor:pointer}
+.card b{font-size:13px;display:block;margin-top:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;padding:20px;overflow:auto}
+.modal.show{display:flex}
+.box{background:#fff;width:100%;max-width:420px;border-radius:18px;padding:20px;height:fit-content}
+.box h2{font-size:20px} label{font-size:12px;font-weight:700;margin-top:12px;display:block}
+input,select{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:10px;margin-top:5px}
+.btn{width:100%;padding:14px;background:#8b5cf6;color:#fff;border:none;border-radius:10px;font-weight:800;margin-top:15px}
+.res{margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px;display:none}
+.res.show{display:block}
+.x{float:right;font-size:24px;cursor:pointer}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">HK <span>RETAIL</span></div>
-<nav><a href="#">HOME</a><a href="#">SHOP</a><a href="#">COLLECTION</a><a href="#">CONTACT</a></nav>
-</header>
-<section class="hero">
-<div class="hero-text">
-<h1>PREMIUM <br><span>MENSWEAR</span> <br>FOR EVERY DAY</h1>
-<p>HK Retail - Where Style Meets Comfort. Best quality shirts, jeans & streetwear in India.</p>
-<a class="btn btn-red" href="#">SHOP NOW - 50% OFF</a>
+<h1>EVERYDAY <span>TOOLS</span></h1>
+<div class="wrap">
+<input id="search" placeholder="Search - EMI, BMI, GST..." oninput="search()">
+<div class="grid" id="grid"></div>
 </div>
-<div style="flex:1;min-width:280px"><img src="https://images.unsplash.com/photo-1488167463357-2f17c0d1ca95?w=600" style="width:100%"></div>
-</section>
-<section class="products">
-<h2>NEW ARRIVALS</h2>
-<div class="grid">
-<div class="card"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"><h3>HK Premium Shirt</h3><div class="price">₹799 <s style="color:#999;font-weight:400">₹1499</s></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400"><h3>HK Street Hoodie</h3><div class="price">₹1199</div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400"><h3>HK Slim Jeans</h3><div class="price">₹1299</div></div>
+<div class="modal" id="modal" onclick="if(event.target==this)closeM()">
+<div class="box">
+<span class="x" onclick="closeM()">×</span>
+<h2 id="title"></h2>
+<div id="inputs"></div>
+<button class="btn" onclick="calc()">CALCULATE</button>
+<div class="res" id="res"></div>
 </div>
-</section>
-<footer>
-<h2>HK RETAIL</h2>
-<p style="margin:15px 0;color:#aaa">Dm to order on Instagram / WhatsApp</p>
-<p>© 2026 HK Retail - All Rights Reserved</p>
-</footer>
+</div>
+<script>
+let tools=["Age Pro","BMI Pro","BMR Pro","EMI Pro","Home Loan Pro","Personal Loan Pro","SIP Pro","FD Pro","PPF Pro","RD Pro","GST Pro","VAT Pro","Discount Pro","Percentage Pro","Fuel Cost Pro","Time Duration Pro","Simple Interest Pro","Compound Interest Pro","Car Loan Pro","Credit Card Pro","Sales Tax Pro","Income Tax Pro","Profit Margin Pro","Inflation Pro","Gratuity Pro"];
+let icons=["🎂","⚖️","🔥","🏦","🏠","💳","📈","🏛️","💰","🔄","🧾","📊","🏷️","%","⛽","⏱️","💵","📊","🚗","💳","🛒","🇮🇳","📈","📉","🎁"];
+let cur=0;
+function render(list){
+let g=document.getElementById('grid'); g.innerHTML="";
+list.forEach((t,i)=>{
+let idx=tools.indexOf(t);
+g.innerHTML+=`<div class="card" onclick="openM(${idx})">${icons[idx]}<b>${t}</b></div>`;
+});
+}
+render(tools);
+function search(){let q=document.getElementById('search').value.toLowerCase(); render(tools.filter(t=>t.toLowerCase().includes(q))); }
+function openM(i){cur=i; document.getElementById('title').innerText=tools[i]; let h="";
+if(i==0) h=`<label>DOB</label><input type="date" id="a">`;
+if(i==1) h=`<label>Height cm</label><input type="number" id="a" value="170"><label>Weight kg</label><input type="number" id="b" value="65">`;
+if([3,4,5,18].includes(i)) h=`<label>Loan ₹</label><input type="number" id="a" value="500000"><label>Interest %</label><input type="number" id="b" value="9"><label>Years</label><input type="number" id="c" value="5">`;
+if(i==6) h=`<label>Monthly SIP ₹</label><input type="number" id="a" value="5000"><label>Return %</label><input type="number" id="b" value="12"><label>Years</label><input type="number" id="c" value="10">`;
+if([7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24].includes(i) || i==2){
+if(i==2) h=`<label>Gender</label><select id="a"><option value="m">Male</option><option value="f">Female</option></select><label>Age</label><input type="number" id="b" value="25"><label>Height cm</label><input type="number" id="c" value="170"><label>Weight kg</label><input type="number" id="d" value="65">`;
+if(i==7) h=`<label>Principal ₹</label><input type="number" id="a" value="100000"><label>Rate %</label><input type="number" id="b" value="7"><label>Years</label><input type="number" id="c" value="5">`;
+if(i==10||i==11||i==20) h=`<label>Amount ₹</label><input type="number" id="a" value="1000"><label>Tax %</label><input type="number" id="b" value="18"><label>Type</label><select id="c"><option value="ex">Exclusive</option><option value="in">Inclusive</option></select>`;
+if(i==12) h=`<label>Price ₹</label><input type="number" id="a" value="1000"><label>Discount %</label><input type="number" id="b" value="20">`;
+if(i==13) h=`<label>Value</label><input type="number" id="a" value="200"><label>%</label><input type="number" id="b" value="15">`;
+if(i==14) h=`<label>Distance km</label><input type="number" id="a" value="100"><label>Mileage</label><input type="number" id="b" value="15"><label>Fuel Price ₹</label><input type="number" id="c" value="105">`;
+if(i==15) h=`<label>Start</label><input type="date" id="a"><label>End</label><input type="date" id="b">`;
+if(i==16) h=`<label>P ₹</label><input type="number" id="a" value="10000"><label>R %</label><input type="number" id="b" value="8"><label>Yrs</label><input type="number" id="c" value="2">`;
+if(i==17) h=`<label>P ₹</label><input type="number" id="a" value="10000"><label>R %</label><input type="number" id="b" value="8"><label>Yrs</label><input type="number" id="c" value="2"><label>N</label><input type="number" id="d" value="4">`;
+if(i==19) h=`<label>Due ₹</label><input type="number" id="a" value="10000"><label>Interest %</label><input type="number" id="b" value="3.5">`;
+if(i==21) h=`<label>Income ₹</label><input type="number" id="a" value="800000">`;
+if(i==22) h=`<label>Cost ₹</label><input type="number" id="a" value="500"><label>Sell ₹</label><input type="number" id="b" value="700">`;
+if(i==23) h=`<label>Amount ₹</label><input type="number" id="a" value="100000"><label>Inflation %</label><input type="number" id="b" value="6"><label>Years</label><input type="number" id="c" value="10">`;
+if(i==24) h=`<label>Salary ₹</label><input type="number" id="a" value="50000"><label>Years</label><input type="number" id="b" value="7">`;
+if(i==8) h=`<label>Yearly ₹</label><input type="number" id="a" value="150000"><label>Rate %</label><input type="number" id="b" value="7.1"><label>Years</label><input type="number" id="c" value="15">`;
+if(i==9) h=`<label>Monthly ₹</label><input type="number" id="a" value="5000"><label>Rate %</label><input type="number" id="b" value="6.5"><label>Months</label><input type="number" id="c" value="60">`;
+}
+document.getElementById('inputs').innerHTML=h;
+document.getElementById('res').className='res';
+document.getElementById('modal').classList.add('show');
+}
+function closeM(){document.getElementById('modal').classList.remove('show');}
+function gv(id){return parseFloat(document.getElementById(id)?.value)||0;}
+function calc(){
+let out="",r=document.getElementById('res');
+if(cur==0){let dob=new Date(document.getElementById('a').value); let now=new Date(); let age=now.getFullYear()-dob.getFullYear(); out=`Age: <b>${age} Years</b>`;}
+if(cur==1){let h=gv('a')/100,w=gv('b'); out=`BMI: <b>${(w/(h*h)).toFixed(2)}</b>`;}
+if(cur==2){let g=document.getElementById('a').value,age=gv('b'),h=gv('c'),w=gv('d'); let bmr=g=='m'?88.362+13.397*w+4.799*h-5.677*age:447.593+9.247*w+3.098*h-4.33*age; out=`BMR: <b>${bmr.toFixed(0)} kcal</b>`;}
+if([3,4,5,18].includes(cur)){let p=gv('a'),rate=gv('b')/12/100,n=gv('c')*12; let emi=p*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`EMI: <b>₹${emi.toFixed(0)}</b>`;}
+if(cur==6){let m=gv('a'),ret=gv('b')/12/100,n=gv('c')*12; let fv=m*((Math.pow(1+ret,n)-1)/ret)*(1+ret); out=`Maturity: <b>₹${fv.toFixed(0)}</b>`;}
+if(cur==7){let p=gv('a'),r=gv('b')/100,y=gv('c'); out=`Maturity: <b>₹${(p*Math.pow(1+r,y)).toFixed(0)}</b>`;}
+if(cur==8||cur==9||cur==10||cur==11||cur==12||cur==13||cur==14||cur==15||cur==16||cur==17||cur==19||cur==20||cur==21||cur==22||cur==23||cur==24){
+if(cur==12){let o=gv('a'),d=gv('b'); out=`Pay: <b>₹${o-o*d/100}</b>`;}
+if(cur==13){out=`Result: <b>${gv('a')*gv('b')/100}</b>`;}
+if(cur==14){out=`Cost: <b>₹${(gv('a')/gv('b')*gv('c')).toFixed(0)}</b>`;}
+if(cur==16){out=`SI: <b>₹${gv('a')*gv('b')*gv('c')/100}</b>`;}
+if(cur==22){let c=gv('a'),s=gv('b'); out=`Margin: <b>${((s-c)/s*100).toFixed(2)}%</b>`;}
+if(cur==24){out=`Gratuity: <b>₹${((15*gv('a')*gv('b'))/26).toFixed(0)}</b>`;}
+if([8,9,10,11,20,21,23].includes(cur) || cur==15 || cur==17 || cur==19){
+if(cur==10||cur==11||cur==20){let amt=gv('a'),tax=gv('b'); out=`Tax: <b>₹${(amt*tax/100).toFixed(2)}</b>`;}
+if(cur==21){let inc=gv('a'),tax=inc>1000000?(inc-1000000)*0.3+112500:inc>500000?(inc-500000)*0.2+12500:inc>250000?(inc-250000)*0.05:0; out=`Tax: <b>₹${tax.toFixed(0)}</b>`;}
+if(cur==23){let p=gv('a'),inf=gv('b')/100,y=gv('c'); out=`Future: <b>₹${(p/Math.pow(1+inf,y)).toFixed(0)}</b>`;}
+}
+}
+r.innerHTML=out; r.classList.add('show');
+}
+</script>
 </body>
 </html>
