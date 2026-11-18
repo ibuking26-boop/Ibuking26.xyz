@@ -1,107 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Everyday Tools - 25 in 1</title>
+<title>Everyday Tools - 25 in 1 Professional Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;font-family:system-ui;margin:0;padding:0}
-body{background:#f5f7fb}
-h1{background:#111;color:#fff;text-align:center;padding:20px;font-size:26px} h1 span{color:#8b5cf6}
-.wrap{max-width:1100px;margin:auto;padding:15px}
-#search{width:100%;max-width:500px;display:block;margin:15px auto;padding:14px;border-radius:30px;border:2px solid #ddd;font-size:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-.card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:1px solid #eee;cursor:pointer}
-.card b{font-size:13px;display:block;margin-top:6px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;padding:20px;overflow:auto}
-.modal.show{display:flex}
-.box{background:#fff;width:100%;max-width:420px;border-radius:18px;padding:20px;height:fit-content}
-.box h2{font-size:20px} label{font-size:12px;font-weight:700;margin-top:12px;display:block}
-input,select{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:10px;margin-top:5px}
-.btn{width:100%;padding:14px;background:#8b5cf6;color:#fff;border:none;border-radius:10px;font-weight:800;margin-top:15px}
-.res{margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px;display:none}
+*{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
+body{background:#f6f7fb;color:#111}
+header{background:#0a0a0a;color:#fff;padding:28px 20px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{font-weight:900;font-size:30px;letter-spacing:1px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:#9ca3af;font-size:12px;letter-spacing:2px;margin-top:6px;font-weight:600}
+.wrap{max-width:1200px;margin:auto;padding:18px}
+.search-wrap{max-width:600px;margin:18px auto;position:relative}
+.search-wrap input{width:100%;padding:16px 22px;border-radius:40px;border:2px solid #e5e7eb;font-size:15px;font-weight:600;outline:none;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.card{background:#fff;border-radius:20px;padding:22px 15px;text-align:center;border:1px solid #ececec;cursor:pointer;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.card:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,.1);border-color:#8b5cf6}
+.card div{font-size:32px} .card b{font-size:13.5px;display:block;margin-top:8px;font-weight:800} .card p{font-size:11px;color:#6b7280;margin-top:4px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:none;z-index:100;padding:16px;overflow:auto}
+.modal.show{display:flex;justify-content:center;align-items:flex-start}
+.box{background:#fff;width:100%;max-width:500px;border-radius:24px;padding:24px;margin:20px auto;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.box h2{font-size:22px;font-weight:900} .badge{display:inline-block;background:#f3e8ff;color:#7c3aed;padding:5px 12px;border-radius:30px;font-size:11px;font-weight:800;margin:8px 0;letter-spacing:.5px}
+.formula{background:#f8fafc;border:1px dashed #cbd5e1;padding:10px 12px;border-radius:12px;font-size:12px;margin:10px 0;color:#475569}
+label{font-size:11px;font-weight:800;margin-top:14px;display:block;letter-spacing:.5px;color:#374151;text-transform:uppercase}
+input,select{width:100%;padding:13px 14px;border:1.5px solid #e5e7eb;border-radius:12px;margin-top:6px;font-size:14px;font-weight:600;outline:none}
+input:focus{border-color:#8b5cf6}
+.btn{width:100%;padding:15px;background:linear-gradient(90deg,#8b5cf6,#7c3aed);color:#fff;border:none;border-radius:14px;font-weight:900;margin-top:18px;cursor:pointer;letter-spacing:.5px;font-size:14px}
+.res{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:16px;padding:16px;margin-top:16px;display:none;line-height:1.9;font-size:13.5px}
 .res.show{display:block}
-.x{float:right;font-size:24px;cursor:pointer}
+.res b{color:#111} .res .main{font-size:18px;color:#7c3aed;font-weight:900}
+hr{border:none;border-top:1px solid #eee;margin:10px 0}
+.x{float:right;font-size:26px;cursor:pointer;font-weight:300}
+.footer{text-align:center;padding:35px;color:#9ca3af;font-size:11px;letter-spacing:1px}
 </style>
 </head>
 <body>
+<header>
 <h1>EVERYDAY <span>TOOLS</span></h1>
+<p>25 IN 1 PROFESSIONAL SUITE - WORLDWIDE EDITION</p>
+</header>
 <div class="wrap">
-<input id="search" placeholder="Search - EMI, BMI, GST..." oninput="search()">
+<div class="search-wrap"><input id="search" placeholder="Search Tools... EMI, BMI, GST, SIP, Age" oninput="filter()"></div>
 <div class="grid" id="grid"></div>
 </div>
 <div class="modal" id="modal" onclick="if(event.target==this)closeM()">
 <div class="box">
-<span class="x" onclick="closeM()">×</span>
-<h2 id="title"></h2>
-<div id="inputs"></div>
-<button class="btn" onclick="calc()">CALCULATE</button>
-<div class="res" id="res"></div>
+<span class="x" onclick="closeM()">&times;</span>
+<h2 id="mtitle"></h2>
+<span class="badge" id="mtag"></span>
+<div class="formula" id="mformula"></div>
+<div id="minputs"></div>
+<button class="btn" onclick="calc()">CALCULATE NOW</button>
+<div class="res" id="mres"></div>
 </div>
 </div>
+<div class="footer">© 2026 EVERYDAY TOOLS - BUILT FOR GLOBAL USERS - VVIP EDITION</div>
 <script>
-let tools=["Age Pro","BMI Pro","BMR Pro","EMI Pro","Home Loan Pro","Personal Loan Pro","SIP Pro","FD Pro","PPF Pro","RD Pro","GST Pro","VAT Pro","Discount Pro","Percentage Pro","Fuel Cost Pro","Time Duration Pro","Simple Interest Pro","Compound Interest Pro","Car Loan Pro","Credit Card Pro","Sales Tax Pro","Income Tax Pro","Profit Margin Pro","Inflation Pro","Gratuity Pro"];
-let icons=["🎂","⚖️","🔥","🏦","🏠","💳","📈","🏛️","💰","🔄","🧾","📊","🏷️","%","⛽","⏱️","💵","📊","🚗","💳","🛒","🇮🇳","📈","📉","🎁"];
+const tools=[
+{n:"Age Pro",i:"🎂",t:"PERSONAL",f:"Age = Current Date - Birth Date",d:"Calculate exact age with full breakdown of years, months, days, hours, minutes, seconds."},
+{n:"BMI Pro",i:"⚖️",t:"HEALTH",f:"BMI = Weight(kg) / Height(m)²",d:"Body Mass Index to check health category."},
+{n:"BMR Pro",i:"🔥",t:"HEALTH",f:"Mifflin-St Jeor: Male: 88.362 + 13.397W + 4.799H - 5.677A",d:"Daily calorie requirement at rest."},
+{n:"EMI Pro",i:"🏦",t:"LOAN",f:"EMI = [P×R×(1+R)^N]/[(1+R)^N-1]",d:"Equated Monthly Installment for any loan."},
+{n:"Home Loan Pro",i:"🏠",t:"LOAN",f:"EMI + Total Interest + Total Payment",d:"Complete home loan breakdown."},
+{n:"Personal Loan Pro",i:"💳",t:"LOAN",f:"Same EMI formula with higher interest",d:"Personal loan EMI with interest details."},
+{n:"SIP Pro",i:"📈",t:"INVESTMENT",f:"FV = P×[((1+r)^n -1)/r]×(1+r)",d:"Systematic Investment Plan returns."},
+{n:"FD Pro",i:"🏛️",t:"INVESTMENT",f:"Maturity = P(1+r)^t",d:"Fixed Deposit maturity value."},
+{n:"PPF Pro",i:"💰",t:"INVESTMENT",f:"F = P[((1+r)^n -1)/r]",d:"Public Provident Fund for 15 years."},
+{n:"RD Pro",i:"🔄",t:"INVESTMENT",f:"RD Maturity = M×[((1+r)^n -1)/r]",d:"Recurring Deposit calculator."},
+{n:"GST Pro",i:"🧾",t:"TAX",f:"GST = Amount×Rate/100",d:"GST inclusive and exclusive calculation."},
+{n:"VAT Pro",i:"📊",t:"TAX",f:"VAT = Price×Rate/100",d:"Value Added Tax calculator."},
+{n:"Discount Pro",i:"🏷️",t:"SHOPPING",f:"Final = Price - (Price×Disc%/100)",d:"Discount, final price and savings."},
+{n:"Percentage Pro",i:"%",t:"MATH",f:"X% of Y = (X×Y)/100",d:"Find percentage value instantly."},
+{n:"Fuel Cost Pro",i:"⛽",t:"TRAVEL",f:"Cost = (Distance/Mileage)×Fuel Price",d:"Total fuel cost for your trip."},
+{n:"Time Duration Pro",i:"⏱️",t:"TIME",f:"Duration = End Date - Start Date",d:"Days between two dates."},
+{n:"Simple Interest Pro",i:"💵",t:"INTEREST",f:"SI = (P×R×T)/100",d:"Simple interest calculation."},
+{n:"Compound Interest Pro",i:"📈",t:"INTEREST",f:"CI = P(1+R/N)^(N×T) - P",d:"Compound interest with compounding frequency."},
+{n:"Car Loan Pro",i:"🚗",t:"LOAN",f:"EMI with Down Payment: (P-Down)×EMI Formula",d:"Car loan EMI calculation."},
+{n:"Credit Card Pro",i:"💳",t:"LOAN",f:"Interest = Due×Monthly Rate, Min Due = Due×5%",d:"Credit card interest and minimum due."},
+{n:"Sales Tax Pro",i:"🛒",t:"TAX",f:"Tax = Price×Tax%/100",d:"Sales tax on shopping."},
+{n:"Income Tax Pro",i:"🇮🇳",t:"TAX",f:"India Old Regime Slabs Calculation",d:"Income tax based on annual income."},
+{n:"Profit Margin Pro",i:"📊",t:"BUSINESS",f:"Margin = (Profit/Sales)×100",d:"Business profit margin %."},
+{n:"Inflation Pro",i:"📉",t:"INVESTMENT",f:"Real Value = Present/(1+Inflation)^Years",d:"Future value after inflation effect."},
+{n:"Gratuity Pro",i:"🎁",t:"SALARY",f:"Gratuity = (15×Salary×Years)/26",d:"Employee gratuity calculation as per Indian law."}
+];
 let cur=0;
+const grid=document.getElementById('grid');
 function render(list){
-let g=document.getElementById('grid'); g.innerHTML="";
-list.forEach((t,i)=>{
-let idx=tools.indexOf(t);
-g.innerHTML+=`<div class="card" onclick="openM(${idx})">${icons[idx]}<b>${t}</b></div>`;
+grid.innerHTML="";
+list.forEach((o,i)=>{
+let idx=tools.indexOf(o);
+grid.innerHTML+=`<div class="card" onclick="openM(${idx})"><div>${o.i}</div><b>${o.n}</b><p>${o.t}</p></div>`;
 });
 }
 render(tools);
-function search(){let q=document.getElementById('search').value.toLowerCase(); render(tools.filter(t=>t.toLowerCase().includes(q))); }
-function openM(i){cur=i; document.getElementById('title').innerText=tools[i]; let h="";
-if(i==0) h=`<label>DOB</label><input type="date" id="a">`;
-if(i==1) h=`<label>Height cm</label><input type="number" id="a" value="170"><label>Weight kg</label><input type="number" id="b" value="65">`;
-if([3,4,5,18].includes(i)) h=`<label>Loan ₹</label><input type="number" id="a" value="500000"><label>Interest %</label><input type="number" id="b" value="9"><label>Years</label><input type="number" id="c" value="5">`;
-if(i==6) h=`<label>Monthly SIP ₹</label><input type="number" id="a" value="5000"><label>Return %</label><input type="number" id="b" value="12"><label>Years</label><input type="number" id="c" value="10">`;
-if([7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24].includes(i) || i==2){
-if(i==2) h=`<label>Gender</label><select id="a"><option value="m">Male</option><option value="f">Female</option></select><label>Age</label><input type="number" id="b" value="25"><label>Height cm</label><input type="number" id="c" value="170"><label>Weight kg</label><input type="number" id="d" value="65">`;
-if(i==7) h=`<label>Principal ₹</label><input type="number" id="a" value="100000"><label>Rate %</label><input type="number" id="b" value="7"><label>Years</label><input type="number" id="c" value="5">`;
-if(i==10||i==11||i==20) h=`<label>Amount ₹</label><input type="number" id="a" value="1000"><label>Tax %</label><input type="number" id="b" value="18"><label>Type</label><select id="c"><option value="ex">Exclusive</option><option value="in">Inclusive</option></select>`;
-if(i==12) h=`<label>Price ₹</label><input type="number" id="a" value="1000"><label>Discount %</label><input type="number" id="b" value="20">`;
-if(i==13) h=`<label>Value</label><input type="number" id="a" value="200"><label>%</label><input type="number" id="b" value="15">`;
-if(i==14) h=`<label>Distance km</label><input type="number" id="a" value="100"><label>Mileage</label><input type="number" id="b" value="15"><label>Fuel Price ₹</label><input type="number" id="c" value="105">`;
-if(i==15) h=`<label>Start</label><input type="date" id="a"><label>End</label><input type="date" id="b">`;
-if(i==16) h=`<label>P ₹</label><input type="number" id="a" value="10000"><label>R %</label><input type="number" id="b" value="8"><label>Yrs</label><input type="number" id="c" value="2">`;
-if(i==17) h=`<label>P ₹</label><input type="number" id="a" value="10000"><label>R %</label><input type="number" id="b" value="8"><label>Yrs</label><input type="number" id="c" value="2"><label>N</label><input type="number" id="d" value="4">`;
-if(i==19) h=`<label>Due ₹</label><input type="number" id="a" value="10000"><label>Interest %</label><input type="number" id="b" value="3.5">`;
-if(i==21) h=`<label>Income ₹</label><input type="number" id="a" value="800000">`;
-if(i==22) h=`<label>Cost ₹</label><input type="number" id="a" value="500"><label>Sell ₹</label><input type="number" id="b" value="700">`;
-if(i==23) h=`<label>Amount ₹</label><input type="number" id="a" value="100000"><label>Inflation %</label><input type="number" id="b" value="6"><label>Years</label><input type="number" id="c" value="10">`;
-if(i==24) h=`<label>Salary ₹</label><input type="number" id="a" value="50000"><label>Years</label><input type="number" id="b" value="7">`;
-if(i==8) h=`<label>Yearly ₹</label><input type="number" id="a" value="150000"><label>Rate %</label><input type="number" id="b" value="7.1"><label>Years</label><input type="number" id="c" value="15">`;
-if(i==9) h=`<label>Monthly ₹</label><input type="number" id="a" value="5000"><label>Rate %</label><input type="number" id="b" value="6.5"><label>Months</label><input type="number" id="c" value="60">`;
-}
-document.getElementById('inputs').innerHTML=h;
-document.getElementById('res').className='res';
+function filter(){let q=document.getElementById('search').value.toLowerCase(); render(tools.filter(x=>x.n.toLowerCase().includes(q) || x.t.toLowerCase().includes(q)));}
+function openM(i){
+cur=i; let o=tools[i];
+document.getElementById('mtitle').innerText=o.n;
+document.getElementById('mtag').innerText=o.t;
+document.getElementById('mformula').innerHTML=`<b>Formula:</b> ${o.f}<br><b>Details:</b> ${o.d}`;
+let h="";
+if(i==0) h=`<label>Date of Birth</label><input type="date" id="a">`;
+if(i==1) h=`<label>Height (cm)</label><input type="number" id="a" value="170"><label>Weight (kg)</label><input type="number" id="b" value="65">`;
+if(i==2) h=`<label>Gender</label><select id="a"><option value="m">Male</option><option value="f">Female</option></select><label>Age (Years)</label><input type="number" id="b" value="25"><label>Height (cm)</label><input type="number" id="c" value="170"><label>Weight (kg)</label><input type="number" id="d" value="65">`;
+if([3,4,5,18].includes(i)) h=`<label>Loan Amount</label><input type="number" id="a" value="500000"><label>Annual Interest %</label><input type="number" id="b" value="9"><label>Tenure (Years)</label><input type="number" id="c" value="5"><label style="display:${i==18?'block':'none'}">Down Payment (For Car)</label><input style="display:${i==18?'block':'none'}" type="number" id="d" value="50000">`;
+if(i==6) h=`<label>Monthly SIP Amount</label><input type="number" id="a" value="5000"><label>Expected Return % (Annual)</label><input type="number" id="b" value="12"><label>Duration (Years)</label><input type="number" id="c" value="10">`;
+if(i==7) h=`<label>Principal Amount</label><input type="number" id="a" value="100000"><label>Interest Rate %</label><input type="number" id="b" value="7"><label>Years</label><input type="number" id="c" value="5">`;
+if(i==8) h=`<label>Yearly Investment</label><input type="number" id="a" value="150000"><label>Rate %</label><input type="number" id="b" value="7.1"><label>Years</label><input type="number" id="c" value="15">`;
+if(i==9) h=`<label>Monthly Deposit</label><input type="number" id="a" value="5000"><label>Rate %</label><input type="number" id="b" value="6.5"><label>Months</label><input type="number" id="c" value="60">`;
+if([10,11,20].includes(i)) h=`<label>Amount</label><input type="number" id="a" value="1000"><label>Tax Rate %</label><input type="number" id="b" value="18"><label>Calculation Type</label><select id="c"><option value="ex">Exclusive (Add Tax)</option><option value="in">Inclusive (Extract Tax)</option></select>`;
+if(i==12) h=`<label>Original Price</label><input type="number" id="a" value="1000"><label>Discount %</label><input type="number" id="b" value="20">`;
+if(i==13) h=`<label>Value</label><input type="number" id="a" value="200"><label>Percentage %</label><input type="number" id="b" value="15">`;
+if(i==14) h=`<label>Distance (km)</label><input type="number" id="a" value="100"><label>Mileage (km/l)</label><input type="number" id="b" value="15"><label>Fuel Price per Litre</label><input type="number" id="c" value="105">`;
+if(i==15) h=`<label>Start Date</label><input type="date" id="a"><label>End Date</label><input type="date" id="b">`;
+if(i==16) h=`<label>Principal</label><input type="number" id="a" value="10000"><label>Rate %</label><input type="number" id="b" value="8"><label>Time (Years)</label><input type="number" id="c" value="2">`;
+if(i==17) h=`<label>Principal</label><input type="number" id="a" value="10000"><label>Rate %</label><input type="number" id="b" value="8"><label>Years</label><input type="number" id="c" value="2"><label>Compounding Frequency (per year)</label><input type="number" id="d" value="4">`;
+if(i==19) h=`<label>Outstanding Due Amount</label><input type="number" id="a" value="10000"><label>Monthly Interest %</label><input type="number" id="b" value="3.5"><label>Minimum Due %</label><input type="number" id="c" value="5">`;
+if(i==21) h=`<label>Annual Income</label><input type="number" id="a" value="800000">`;
+if(i==22) h=`<label>Cost Price</label><input type="number" id="a" value="500"><label>Selling Price</label><input type="number" id="b" value="700">`;
+if(i==23) h=`<label>Current Amount</label><input type="number" id="a" value="100000"><label>Inflation Rate %</label><input type="number" id="b" value="6"><label>Years</label><input type="number" id="c" value="10">`;
+if(i==24) h=`<label>Last Drawn Salary (Basic+DA)</label><input type="number" id="a" value="50000"><label>Years of Service</label><input type="number" id="b" value="7">`;
+document.getElementById('minputs').innerHTML=h;
+document.getElementById('mres').className='res';
 document.getElementById('modal').classList.add('show');
 }
 function closeM(){document.getElementById('modal').classList.remove('show');}
 function gv(id){return parseFloat(document.getElementById(id)?.value)||0;}
 function calc(){
-let out="",r=document.getElementById('res');
-if(cur==0){let dob=new Date(document.getElementById('a').value); let now=new Date(); let age=now.getFullYear()-dob.getFullYear(); out=`Age: <b>${age} Years</b>`;}
-if(cur==1){let h=gv('a')/100,w=gv('b'); out=`BMI: <b>${(w/(h*h)).toFixed(2)}</b>`;}
-if(cur==2){let g=document.getElementById('a').value,age=gv('b'),h=gv('c'),w=gv('d'); let bmr=g=='m'?88.362+13.397*w+4.799*h-5.677*age:447.593+9.247*w+3.098*h-4.33*age; out=`BMR: <b>${bmr.toFixed(0)} kcal</b>`;}
-if([3,4,5,18].includes(cur)){let p=gv('a'),rate=gv('b')/12/100,n=gv('c')*12; let emi=p*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1); out=`EMI: <b>₹${emi.toFixed(0)}</b>`;}
-if(cur==6){let m=gv('a'),ret=gv('b')/12/100,n=gv('c')*12; let fv=m*((Math.pow(1+ret,n)-1)/ret)*(1+ret); out=`Maturity: <b>₹${fv.toFixed(0)}</b>`;}
-if(cur==7){let p=gv('a'),r=gv('b')/100,y=gv('c'); out=`Maturity: <b>₹${(p*Math.pow(1+r,y)).toFixed(0)}</b>`;}
-if(cur==8||cur==9||cur==10||cur==11||cur==12||cur==13||cur==14||cur==15||cur==16||cur==17||cur==19||cur==20||cur==21||cur==22||cur==23||cur==24){
-if(cur==12){let o=gv('a'),d=gv('b'); out=`Pay: <b>₹${o-o*d/100}</b>`;}
-if(cur==13){out=`Result: <b>${gv('a')*gv('b')/100}</b>`;}
-if(cur==14){out=`Cost: <b>₹${(gv('a')/gv('b')*gv('c')).toFixed(0)}</b>`;}
-if(cur==16){out=`SI: <b>₹${gv('a')*gv('b')*gv('c')/100}</b>`;}
-if(cur==22){let c=gv('a'),s=gv('b'); out=`Margin: <b>${((s-c)/s*100).toFixed(2)}%</b>`;}
-if(cur==24){out=`Gratuity: <b>₹${((15*gv('a')*gv('b'))/26).toFixed(0)}</b>`;}
-if([8,9,10,11,20,21,23].includes(cur) || cur==15 || cur==17 || cur==19){
-if(cur==10||cur==11||cur==20){let amt=gv('a'),tax=gv('b'); out=`Tax: <b>₹${(amt*tax/100).toFixed(2)}</b>`;}
-if(cur==21){let inc=gv('a'),tax=inc>1000000?(inc-1000000)*0.3+112500:inc>500000?(inc-500000)*0.2+12500:inc>250000?(inc-250000)*0.05:0; out=`Tax: <b>₹${tax.toFixed(0)}</b>`;}
-if(cur==23){let p=gv('a'),inf=gv('b')/100,y=gv('c'); out=`Future: <b>₹${(p/Math.pow(1+inf,y)).toFixed(0)}</b>`;}
+let r=document.getElementById('mres'); let out="";
+if(cur==0){
+let v=document.getElementById('a').value; if(!v){r.innerHTML="Please select Date of Birth"; r.classList.add('show'); return;}
+let dob=new Date(v); let now=new Date(); let diff=now-dob;
+let sec=Math.floor(diff/1000), min=Math.floor(sec/60), hrs=Math.floor(min/60), daysTotal=Math.floor(hrs/24), weeks=Math.floor(daysTotal/7);
+let y=now.getFullYear()-dob.getFullYear(), m=now.getMonth()-dob.getMonth(), d=now.getDate()-dob.getDate();
+if(d<0){m--; let pm=new Date(now.getFullYear(),now.getMonth(),0).getDate(); d+=pm;} if(m<0){y--; m+=12;}
+out=`<div class="main">🎂 ${y} Years, ${m} Months, ${d} Days</div><hr>
+Year: <b>${y} Years</b><br>Months: <b>${y*12+m} Months</b><br>Days in Current Month: <b>${d} Days</b><br>Current Time: <b>${now.getHours()}h ${now.getMinutes()}m ${now.getSeconds()}s</b><hr>
+<b>TOTAL CALCULATION:</b><br>Total Days: <b>${daysTotal.toLocaleString()}</b><br>Total Hours: <b>${hrs.toLocaleString()}</b><br>Total Minutes: <b>${min.toLocaleString()}</b><br>Total Seconds: <b>${sec.toLocaleString()}</b><br>Total Weeks: <b>${weeks.toLocaleString()}</b>`;
 }
-}
+if(cur==1){let h=gv('a')/100,w=gv('b'),bmi=w/(h*h); let cat=bmi<18.5?"Underweight":bmi<24.9?"Normal":bmi<29.9?"Overweight":"Obese"; out=`<div class="main">BMI: ${bmi.toFixed(2)}</div>Category: <b>${cat}</b><hr>Height: ${gv('a')} cm<br>Weight: ${w} kg<br>Ideal Weight for Normal BMI: <b>${(22*h*h).toFixed(1)} kg</b>`;}
+if(cur==2){let g=document.getElementById('a').value,age=gv('b'),h=gv('c'),w=gv('d'); let bmr=g=='m'?88.362+13.397*w+4.799*h-5.677*age:447.593+9.247*w+3.098*h-4.33*age; out=`<div class="main">${bmr.toFixed(0)} kcal/day</div>BMR: <b>${bmr.toFixed(0)} Calories</b><br>With Light Activity (×1.375): <b>${(bmr*1.375).toFixed(0)} kcal</b><br>With Moderate Activity (×1.55): <b>${(bmr*1.55).toFixed(0)} kcal</b><br>Weight Loss Target: <b>${(bmr*1.2-500).toFixed(0)} kcal/day</b>`;}
+if([3,4,5,18].includes(cur)){let p=gv('a'),down=cur==18?gv('d'):0,loan=p-down,rate=gv('b')/12/100,n=gv('c')*12,emi=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1),total=emi*n,interest=total-loan; out=`<div class="main">EMI: ₹${emi.toFixed(0)}/month</div>Loan Amount: <b>₹${loan.toLocaleString()}</b><br>Total Interest: <b>₹${interest.toFixed(0)}</b><br>Total Payment: <b>₹${total.toFixed(0)}</b><br>Tenure: <b>${gv('c')} Years (${n} Months)</b><br>Interest %: <b>${gv('b')}% per annum</b>`;}
+if(cur==6){let m=gv('a'),ret=gv('b')/12/100,n=gv('c')*12,fv=m*((Math.pow(1+ret,n)-1)/ret)*(1+ret),inv=m*n,gain=fv-inv; out=`<div class="main">Maturity: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Estimated Gain: <b>₹${gain.toFixed(0)}</b><br>Monthly SIP: <b>₹${m}</b><br>Duration: <b>${gv('c')} Years</b><br>Return: <b>${gv('b')}%</b>`;}
+if(cur==7){let p=gv('a'),r=gv('b')/100,y=gv('c'),fv=p*Math.pow(1+r,y),interest=fv-p; out=`<div class="main">Maturity: ₹${fv.toFixed(0)}</div>Principal: <b>₹${p.toLocaleString()}</b><br>Interest Earned: <b>₹${interest.toFixed(0)}</b><br>Rate: <b>${gv('b')}%</b><br>Period: <b>${y} Years</b>`;}
+if(cur==8){let p=gv('a'),r=gv('b')/100,y=gv('c'),fv=p*(((Math.pow(1+r,y)-1)/r)),inv=p*y,gain=fv-inv; out=`<div class="main">PPF Maturity: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b><br>Yearly: <b>₹${p}</b><br>Rate: <b>${gv('b')}%</b>`;}
+if(cur==9){let m=gv('a'),r=gv('b')/12/100,n=gv('c'),fv=m*((Math.pow(1+r,n)-1)/r),inv=m*n,gain=fv-inv; out=`<div class="main">RD Maturity: ₹${fv.toFixed(0)}</div>Invested: <b>₹${inv.toLocaleString()}</b><br>Gain: <b>₹${gain.toFixed(0)}</b><br>Monthly: <b>₹${m}</b><br>Months: <b>${n}</b>`;}
+if([10,11,20].includes(cur)){let amt=gv('a'),tax=gv('b'),type=document.getElementById('c').value,taxAmt,total,base; if(type=='ex'){taxAmt=amt*tax/100; total=amt+taxAmt; base=amt;}else{total=amt; taxAmt=amt-amt*100/(100+tax); base=amt-taxAmt;} out=`<div class="main">${type=='ex'?'Total with Tax':'Base Amount'}: ₹${(type=='ex'?total:base).toFixed(2)}</div>Tax Amount: <b>₹${taxAmt.toFixed(2)}</b><br>${type=='ex'?'Base':'Inclusive'} Amount: <b>₹${base.toFixed(2)}</b><br>Total: <b>₹${total.toFixed(2)}</b><br>Rate: <b>${tax}%</b>`;}
+if(cur==12){let o=gv('a'),d=gv('b'),save=o*d/100,pay=o-save; out=`<div class="main">You Pay: ₹${pay.toFixed(0)}</div>Original: <b>₹${o}</b><br>Discount: <b>${d}% (₹${save.toFixed(0)} Off)</b><br>You Save: <b>₹${save.toFixed(0)}</b>`;}
+if(cur==13){let v=gv('a'),p=gv('b'),res=v*p/100; out=`<div class="main">${p}% of ${v} = ${res}</div>Value: <b>${v}</b><br>Percentage: <b>${p}%</b><br>Result: <b>${res}</b><br>Remaining: <b>${v-res}</b>`;}
+if(cur==14){let dist=gv('a'),mil=gv('b'),price=gv('c'),fuel=dist/mil,cost=fuel*price; out=`<div class="main">Trip Cost: ₹${cost.toFixed(0)}</div>Distance: <b>${dist} km</b><br>Mileage: <b>${mil} km/l</b><br>Fuel Needed: <b>${fuel.toFixed(2)} Litres</b><br>Price: <b>₹${price}/L</b>`;}
+if(cur==15){let s=new Date(document.getElementById('a').value),e=new Date(document.getElementById('b').value); let diff=Math.abs(e-s),days=Math.ceil(diff/(1000*60*60*24)),months=Math.floor(days/30),years=Math.floor(days/365); out=`<div class="main">${days} Days</div>Total Days: <b>${days}</b><br>Months Approx: <b>${months}</b><br>Years Approx: <b>${years}</b><br>Hours: <b>${days*24}</b><br>Minutes: <b>${days*24*60}</b>`;}
+if(cur==16){let p=gv('a'),r=gv('b'),y=gv('c'),si=p*r*y/100,total=p+si; out=`<div class="main">Simple Interest: ₹${si.toFixed(0)}</div>Principal: <b>₹${p.toLocaleString()}</b><br>Rate: <b>${r}%</b><br>Time: <b>${y} Years</b><br>Total Amount: <b>₹${total.toFixed(0)}</b>`;}
+if(cur==17){let p=gv('a'),r=gv('b')/100,y=gv('c'),n=gv('d'),ci=p*Math.pow(1+r/n,n*y),interest=ci-p; out=`<div class="main">Total: ₹${ci.toFixed(0)}</div>Principal: <b>₹${p.toLocaleString()}</b><br>Interest: <b>₹${interest.toFixed(0)}</b><br>Rate: <b>${gv('b')}%</b><br>Compounding: <b>${n} times/year</b><br>Years: <b>${y}</b>`;}
+if(cur==19){let due=gv('a'),rate=gv('b'),minP=gv('c')||5,minDue=due*minP/100,interest=due*rate/100,totalDue=due+interest; out=`<div class="main">Min Due: ₹${minDue.toFixed(0)}</div>Outstanding: <b>₹${due.toLocaleString()}</b><br>Interest (${rate}%): <b>₹${interest.toFixed(0)}</b><br>Total Due with Interest: <b>₹${totalDue.toFixed(0)}</b><br>Avoid Interest by Paying Full Amount`;}
+if(cur==21){let inc=gv('a'),tax=0; if(inc>1000000)tax=(inc-1000000)*0.3+112500; else if(inc>500000)tax=(inc-500000)*0.2+12500; else if(inc>250000)tax=(inc-250000)*0.05; let net=inc-tax; out=`<div class="main">Tax: ₹${tax.toFixed(0)}</div>Income: <b>₹${inc.toLocaleString()}</b><br>Tax Payable: <b>₹${tax.toFixed(0)}</b><br>Net Income: <b>₹${net.toFixed(0)}</b><br>Effective Rate: <b>${(tax/inc*100).toFixed(2)}%</b>`;}
+if(cur==22){let c=gv('a'),s=gv('b'),profit=s-c,margin=profit/s*100,markup=profit/c*100; out=`<div class="main">Margin: ${margin.toFixed(2)}%</div>Cost: <b>₹${c}</b><br>Selling: <b>₹${s}</b><br>Profit: <b>₹${profit}</b><br>Profit Margin: <b>${margin.toFixed(2)}%</b><br>Markup: <b>${markup.toFixed(2)}%</b>`;}
+if(cur==23){let p=gv('a'),inf=gv('b')/100,y=gv('c'),fut=p/Math.pow(1+inf,y),loss=p-fut; out=`<div class="main">Future Value: ₹${fut.toFixed(0)}</div>Present Value: <b>₹${p.toLocaleString()}</b><br>Value After ${y} Years: <b>₹${fut.toFixed(0)}</b><br>Loss Due to Inflation: <b>₹${loss.toFixed(0)}</b><br>Inflation: <b>${gv('b')}%</b>`;}
+if(cur==24){let sal=gv('a'),yr=gv('b'),grat=(15*sal*yr)/26; out=`<div class="main">Gratuity: ₹${grat.toFixed(0)}</div>Last Salary: <b>₹${sal.toLocaleString()}</b><br>Years: <b>${yr}</b><br>Formula: <b>(15×Salary×Years)/26</b><br>Eligibility: <b>Minimum 5 Years</b>`;}
 r.innerHTML=out; r.classList.add('show');
 }
 </script>
