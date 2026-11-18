@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width,initial-scale=1.0"><style>
+body{font-family:sans-serif;background:#f5f5f5}
+.header{background:#111;color:#fff;padding:15px;text-align:center;font-weight:900}
+.folders{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:15px}
+.folder{background:#fff;border-radius:20px;padding:30px 10px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.1);cursor:pointer}
+.folder .icon{font-size:40px}
+.tool{background:#fff;padding:15px;margin:10px;border-radius:12px;display:flex;justify-content:space-between}
+</style></head>
+<body>
+<div class="header">ibuking26.xyz - 8 FOLDERS</div>
+<div id="home"><div class="folders" id="folders"></div></div>
+<div id="inside" style="display:none;padding:15px"><button onclick="goHome()">← Back</button><h2 id="fname"></h2><div id="tlist"></div></div>
+<script>
+// YAHAN TU APNI CHOICE SE TOOL DAAL SAKTA HAI - 8 FOLDER, HAR ME 10 TOOL
+let myFolders = {
+"Folder 1 (Daily)": ["Age Calculator","BMI Calculator","EMI Calculator","GST Calculator","SIP Calculator","FD Calculator","Percentage Calculator","Discount Calculator","Profit Calculator","Loan Calculator"],
+"Folder 2 (Finance)": ["Tax Calculator","Salary Calculator","Tip Calculator","Interest Calculator","PPF Calculator","Rent Calculator","Inflation Calculator","Savings Calculator","Budget Calculator","Investment Calculator"],
+"Folder 3 (Health)": ["BMR Calculator","Water Calculator","Calories Calculator","Pregnancy Calculator","Heart Rate Calculator","Steps Calculator","Sleep Calculator","Weight Calculator","Height Calculator","Blood Pressure Log"],
+"Folder 4 (Math)": ["Area Calculator","Volume Calculator","Speed Calculator","Time Calculator","Date Calculator","Average Calculator","Fraction Calculator","Ratio Calculator","Square Root Calculator","Cube Calculator"],
+"Folder 5 (Converter)": ["Length Converter","Weight Converter","Temp Converter","Area Converter","Volume Converter","Speed Converter","Time Converter","Pressure Converter","Energy Converter","Data Converter"],
+"Folder 6 (Bills)": ["Electricity Bill","Water Bill","Fuel Calculator","Electricity Calculator","Gas Bill","Phone Bill","Internet Bill","Shopping Bill","Milk Calculator","Grocery Calculator"],
+"Folder 7 (Education)": ["CGPA Calculator","GPA Calculator","Grade Calculator","Age for School","Percentage to CGPA","Attendance Calculator","Exam Calculator","Fee Calculator","Scholarship Calculator","Loan for Study"],
+"Folder 8 (Other)": ["Love Calculator","Name Calculator","Lucky Number","QR Generator","Password Generator","Word Counter","Case Converter","Color Picker","Barcode Generator","My Custom Tool"]
+};
+
+let fDiv=document.getElementById('folders');
+Object.keys(myFolders).forEach((fname,i)=>{
+ fDiv.innerHTML+=`<div class="folder" onclick="openFolder('${fname}')"><div class="icon">📁</div><h3>Box ${i+1}</h3><p style="font-size:12px">${fname}</p><p style="font-size:11px;color:#777">${myFolders[fname].length} Tools Inside</p></div>`;
+});
+function openFolder(name){
+ document.getElementById('home').style.display='none';
+ document.getElementById('inside').style.display='block';
+ document.getElementById('fname').innerText=name;
+ let list=document.getElementById('tlist'); list.innerHTML='';
+ myFolders[name].forEach(t=>{list.innerHTML+=`<div class="tool"><span>${t}</span><span>Open →</span></div>`;});
+}
+function goHome(){document.getElementById('home').style.display='block';document.getElementById('inside').style.display='none';}
+</script>
+</body>
+</html>
