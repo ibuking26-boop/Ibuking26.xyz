@@ -1,50 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Everyday Tools - 8 Boxes</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+<title>Everyday Tools - Box 1 Full</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;font-family:'Inter';margin:0;padding:0}
-body{background:#f6f7fb}
-header{background:#0a0a0a;color:#fff;padding:20px;text-align:center;position:sticky;top:0;z-index:10}
-header h1{font-weight:900} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+*{box-sizing:border-box;font-family:'Inter',system-ui;margin:0;padding:0}
+body{background:#f6f7fb;color:#111}
+header{background:#0a0a0a;color:#fff;padding:18px;text-align:center;position:sticky;top:0;z-index:20}
+header h1{font-weight:900;font-size:18px} header h1 span{background:linear-gradient(90deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .wrap{max-width:1200px;margin:auto;padding:14px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
 .main-dabba{background:white;border-radius:22px;padding:35px 15px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06);cursor:pointer}
-.num-box{width:70px;height:70px;margin:0 auto 10px;background:#0a0a0a;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;font-weight:900}
-.card{background:white;border-radius:16px;padding:16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.num-box{width:72px;height:72px;margin:0 auto 10px;background:#0a0a0a;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;font-weight:900}
+.card{background:white;border-radius:18px;padding:18px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05);cursor:pointer}
+.tool-box{background:white;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:14px}
+.tool-box h3{font-weight:800;margin-bottom:10px}
+.tool-box input{width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;margin:6px 0}
+.tool-box button{width:100%;padding:12px;border:none;background:#0a0a0a;color:white;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
+.result{margin-top:12px;padding:12px;background:#f6f7fb;border-radius:12px;font-weight:700;text-align:center}
 .hidden{display:none}
-.back{border:none;background:#0a0a0a;color:white;padding:10px 18px;border-radius:12px;margin-bottom:14px}
+.back{border:none;background:#0a0a0a;color:white;padding:10px 18px;border-radius:12px;margin-bottom:14px;cursor:pointer}
 </style>
 </head>
 <body>
 <header><h1>ibuking26.<span>xyz</span> - Everyday Tools</h1></header>
 <div class="wrap">
 <div id="home"><div class="grid" id="folders"></div></div>
-<div id="inside" class="hidden"><button class="back" onclick="goHome()">← Back</button><h2 id="ftitle" style="margin-bottom:12px;font-weight:800"></h2><div class="grid" id="tools"></div></div>
+<div id="inside" class="hidden"><button class="back" onclick="goHome()">← Back to Boxes</button><h2 id="ftitle" style="margin-bottom:12px;font-weight:900"></h2><div id="toolsList"></div></div>
+<div id="calcView" class="hidden"><button class="back" onclick="backToList()">← Back to Tools</button><div id="calcArea"></div></div>
 </div>
 <script>
+let allTools=[
+"Age Calculator","BMI Calculator","EMI Calculator","GST Calculator","SIP Calculator","FD Calculator","PPF Calculator","Loan Calculator","Discount Calculator","Percentage Calculator","Profit Loss Calculator","Salary Calculator","Tip Calculator","Speed Calculator","Fuel Calculator","Electricity Bill Calculator","Water Usage Calculator","Weight Converter","Length Converter","Area Converter","Temperature Converter","Time Calculator","Date Calculator","Interest Calculator","Tax Calculator"
+];
 let folders=document.getElementById('folders');
-let toolsDiv=document.getElementById('tools');
-
 for(let f=0;f<8;f++){
- let start=f*25+1; let end=(f+1)*25;
- folders.innerHTML+=`<div class="main-dabba" onclick="openFolder(${f})"><div class="num-box">${f+1}</div><h3 style="font-weight:800;font-size:16px">Box ${f+1}</h3><p style="color:#666;font-size:12px;margin-top:4px">${start} - ${end}</p></div>`;
+ let s=f*25+1; let e=(f+1)*25;
+ folders.innerHTML+=`<div class="main-dabba" onclick="openBox(${f})"><div class="num-box">${f+1}</div><h3 style="font-weight:800">Box ${f+1}</h3><p style="color:#777;font-size:13px">${s} - ${e}</p></div>`;
 }
-
-function openFolder(f){
- home.classList.add('hidden'); inside.classList.remove('hidden');
- let start=f*25+1; let end=(f+1)*25;
- ftitle.innerText=`Box ${f+1} : ${start} to ${end}`;
- toolsDiv.innerHTML="";
- for(let i=start;i<=end;i++){
-  toolsDiv.innerHTML+=`<div class="card"><div style="font-weight:800;font-size:20px">${i}</div><div style="font-weight:600;margin-top:6px;font-size:13px">Tool ${i}</div><div style="color:#999;font-size:11px;margin-top:4px">Accounts</div></div>`;
+let currentBox=0;
+function openBox(f){
+ currentBox=f;
+ document.getElementById('home').classList.add('hidden');
+ document.getElementById('inside').classList.remove('hidden');
+ document.getElementById('calcView').classList.add('hidden');
+ let s=f*25+1; let e=(f+1)*25;
+ document.getElementById('ftitle').innerText=`Box ${f+1} : ${s} to ${e}`;
+ let listDiv=document.getElementById('toolsList');
+ listDiv.innerHTML="";
+ if(f==0){
+   allTools.forEach((t,i)=>{
+     listDiv.innerHTML+=`<div class="card" style="margin-bottom:12px" onclick="openCalc(${i})"><div style="font-weight:700">${t}</div><div style="font-size:11px;color:#999">Tap to Open - Full Detail</div></div>`;
+   });
+ } else {
+   for(let i=s;i<=e;i++){listDiv.innerHTML+=`<div class="card" style="margin-bottom:12px"><div style="font-weight:700">Tool ${i}</div><div style="font-size:11px;color:#999">Coming Soon</div></div>`;}
  }
  window.scrollTo(0,0);
 }
-function goHome(){inside.classList.add('hidden');home.classList.remove('hidden');}
+function goHome(){document.getElementById('home').classList.remove('hidden');document.getElementById('inside').classList.add('hidden');document.getElementById('calcView').classList.add('hidden');}
+function backToList(){document.getElementById('inside').classList.remove('hidden');document.getElementById('calcView').classList.add('hidden');}
+function openCalc(i){
+ document.getElementById('inside').classList.add('hidden');
+ document.getElementById('calcView').classList.remove('hidden');
+ let area=document.getElementById('calcArea');
+ let t=allTools[i];
+ let html=`<div class="tool-box"><h3>${t}</h3>`;
+ if(t.includes("Age")){html+=`<input type="date" id="dob"><button onclick="calcAge()">Calculate Age</button><div id="res" class="result"></div>`;}
+ else if(t.includes("BMI")){html+=`<input type="number" id="h" placeholder="Height cm"><input type="number" id="w" placeholder="Weight kg"><button onclick="calcBMI()">Calculate BMI</button><div id="res" class="result"></div>`;}
+ else if(t.includes("EMI")){html+=`<input type="number" id="p" placeholder="Loan Amount"><input type="number" id="r" placeholder="Interest %"><input type="number" id="n" placeholder="Months"><button onclick="calcEMI()">Calculate EMI</button><div id="res" class="result"></div>`;}
+ else {html+=`<input type="number" id="a" placeholder="Value 1"><input type="number" id="b" placeholder="Value 2"><button onclick="document.getElementById('res').innerText='Result: '+(Number(document.getElementById('a').value)+Number(document.getElementById('b').value))">Calculate</button><div id="res" class="result">Enter values</div>`;}
+ html+=`</div>`;
+ area.innerHTML=html;
+}
+function calcAge(){let dob=new Date(document.getElementById('dob').value);let diff=Date.now()-dob;let age=new Date(diff).getUTCFullYear()-1970;document.getElementById('res').innerText=`Age: ${age} years`;}
+function calcBMI(){let h=document.getElementById('h').value/100;let w=document.getElementById('w').value;let bmi=(w/(h*h)).toFixed(2);document.getElementById('res').innerText=`BMI: ${bmi}`;}
+function calcEMI(){let p=+document.getElementById('p').value;let r=+document.getElementById('r').value/12/100;let n=+document.getElementById('n').value;let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);document.getElementById('res').innerText=`EMI: ₹${emi.toFixed(2)}`;}
 </script>
 </body>
 </html>
