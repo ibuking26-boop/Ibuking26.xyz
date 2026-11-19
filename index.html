@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Toolz 26 - 25 Calculators</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Everyday Tools - 25 Calculators</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f2f4f8;padding-bottom:90px}
+body{background:#f2f4f8;padding-bottom:20px}
 .top{background:#0f172a;color:#fff;padding:22px 16px 30px;border-radius:0 0 24px 24px;text-align:center}
 .top h1{font-size:26px}.top p{opacity:.8;font-size:13px;margin-top:4px}
+.logo{width:58px;height:58px;background:#fff;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:#0f172a;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .search{margin:-18px 16px 0;background:#fff;padding:12px;border-radius:14px;box-shadow:0 4px 15px rgba(0,0,0,.1);display:flex;gap:8px}
 .search input{flex:1;border:0;outline:0;font-size:15px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
@@ -20,11 +21,9 @@ body{background:#f2f4f8;padding-bottom:90px}
 .btn{width:100%;background:#2563eb;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:700;margin-top:16px;font-size:15px}
 .result{display:none;margin-top:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px}.result.show{display:block}
 .r-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed #e2e8f0;font-size:14px}.r-row:last-child{border:0}.r-row b{color:#0f172a;text-align:right}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:12px 0 18px;border-top:1px solid #e2e8f0}
-.bottom div{text-align:center;font-size:11px;color:#64748b;cursor:pointer}.bottom .act{color:#2563eb;font-weight:700}
 </style></head><body>
 <div id="home-view">
-<div class="top"><h1>🔧 Toolz 26</h1><p>25 Powerful Calculators - Free & Fast</p></div>
+<div class="top"><div class="logo">E</div><h1>Everyday Tools</h1><p>25 Powerful Calculators - Free & Fast</p></div>
 <div class="search">🔍 <input id="searchInput" placeholder="Search calculator..." onkeyup="doSearch()"></div>
 <div class="sec">📊 Health & Life</div>
 <div class="grid">
@@ -68,7 +67,6 @@ body{background:#f2f4f8;padding-bottom:90px}
 </div>
 </div>
 
-<!-- VIEWS -->
 <div class="view" id="view-age"><div class="calc-header"><button onclick="goHome()">← Back</button><b>Age Pro - Full Detail</b></div><div class="calc-box"><label>Birth Date</label><div class="row"><input id="bd" placeholder="Day"><input id="bm" placeholder="Month"><input id="by" placeholder="Year"></div><label>Target Date</label><div class="row"><input id="td" placeholder="Day"><input id="tm" placeholder="Month"><input id="ty" placeholder="Year"></div><button class="btn" onclick="calcAge()">Calculate Age Full Detail</button><div class="result" id="res-age"></div></div></div>
 <div class="view" id="view-bmi"><div class="calc-header"><button onclick="goHome()">← Back</button><b>BMI Pro - Full Detail</b></div><div class="calc-box"><label>Weight (kg)</label><input id="bmi_w" placeholder="e.g. 70"><label>Height (cm)</label><input id="bmi_h" placeholder="e.g. 175"><button class="btn" onclick="calcBMI()">Calculate BMI Full Detail</button><div class="result" id="res-bmi"></div></div></div>
 <div class="view" id="view-bmr"><div class="calc-header"><button onclick="goHome()">← Back</button><b>BMR Pro - Full Detail</b></div><div class="calc-box"><label>Weight kg</label><input id="bmr_w"><label>Height cm</label><input id="bmr_h"><label>Age</label><input id="bmr_age"><label>Gender</label><select id="bmr_g"><option value="">Select Gender</option><option>Male</option><option>Female</option></select><button class="btn" onclick="calcBMR()">Calculate BMR Full Detail</button><div class="result" id="res-bmr"></div></div></div>
@@ -95,7 +93,6 @@ body{background:#f2f4f8;padding-bottom:90px}
 <div class="view" id="view-inflation"><div class="calc-header"><button onclick="goHome()">← Back</button><b>Inflation Pro - Full Detail</b></div><div class="calc-box"><label>Current Amount</label><input id="inf_a"><label>Inflation %</label><input id="inf_r"><label>Years</label><input id="inf_y"><button class="btn" onclick="calcINF()">Calculate Inflation Full Detail</button><div class="result" id="res-inflation"></div></div></div>
 <div class="view" id="view-gratuity"><div class="calc-header"><button onclick="goHome()">← Back</button><b>Gratuity Pro - Full Detail</b></div><div class="calc-box"><label>Last Salary</label><input id="gr_s"><label>Years of Service</label><input id="gr_y"><button class="btn" onclick="calcGR()">Calculate Gratuity Full Detail</button><div class="result" id="res-gratuity"></div></div></div>
 
-<div class="bottom"><div class="act" onclick="goHome()">🏠<br>Home</div><div onclick="goHome()">🧮<br>Tools</div><div onclick="goHome()">⭐<br>Saved</div><div onclick="goHome()">⚙️<br>More</div></div>
 <script>
 function openTool(id){document.getElementById('home-view').style.display='none';document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById('view-'+id).classList.add('active');window.scrollTo(0,0);}
 function goHome(){document.getElementById('home-view').style.display='block';document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));window.scrollTo(0,0);}
