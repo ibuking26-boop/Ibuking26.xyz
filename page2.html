@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page 2 - 25 More Tools | Ibuking26.xyz</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f0f4ff;padding:15px}
+.header{background:#1e3a8a;color:#fff;text-align:center;padding:20px;border-radius:15px}
+.header h1{font-size:26px}.header p{font-size:14px;opacity:.9;margin-top:5px}
+.nav{display:flex;gap:10px;margin:15px 0}
+.nav a{flex:1;text-align:center;background:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:bold;color:#1e3a8a;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.search{width:100%;padding:13px;border-radius:12px;border:1px solid #ddd;font-size:15px;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:15px;padding:15px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.card span{font-size:28px}.card h3{font-size:14px;margin:6px 0 3px}.card p{font-size:11px;color:#666}
+#box{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);padding:20px;overflow:auto}
+#boxInner{background:#fff;border-radius:15px;padding:20px;max-width:500px;margin:20px auto}
+input,select,textarea,button{width:100%;padding:11px;margin:7px 0;border-radius:9px;border:1px solid #ddd;font-size:15px}
+button{background:#1e3a8a;color:#fff;border:none;font-weight:bold;cursor:pointer}
+.close{background:#ef4444}.result{background:#eef2ff;padding:12px;border-radius:10px;margin-top:10px;font-weight:bold;text-align:center;word-break:break-all}
+.footer{text-align:center;padding:15px;color:#666;font-size:13px}
+@media(max-width:400px){.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="header"><h1>🛠️ Page 2 - 25 More Tools</h1><p>Daily + Utility Tools | Total 50 Tools Done</p></div>
+<div class="nav"><a href="index.html">⬅️ Previous - Page 1</a><a href="page3.html">Next - Page 3 ➡️</a></div>
+<input class="search" id="search" placeholder="🔍 Search tool... e.g. Password, QR, Word" onkeyup="filter()">
+<div class="grid" id="grid"></div>
+<div class="footer">Ibuking26.xyz | Page 2 of 8 | 200 Tools Target</div>
+
+<div id="box"><div id="boxInner"></div></div>
+<script>
+const tools=[
+{id:'pass',icon:'🔑',name:'Password Generator',desc:'Strong password'},
+{id:'qr',icon:'📷',name:'QR Generator',desc:'Text to QR'},
+{id:'word',icon:'📝',name:'Word Counter',desc:'Words & chars'},
+{id:'tts',icon:'🔊',name:'Text to Speech',desc:'Speak text'},
+{id:'img',icon:'🖼️',name:'Image Resizer Info',desc:'Size guide'},
+{id:'unit',icon:'📏',name:'Unit Converter',desc:'Length - KM to M'},
+{id:'curr',icon:'💱',name:'Currency Converter',desc:'USD to INR approx'},
+{id:'date',icon:'📅',name:'Date Calculator',desc:'Days between dates'},
+{id:'time',icon:'⏰',name:'Time Converter',desc:'Hours to Minutes'},
+{id:'speed',icon:'🚀',name:'Speed Calculator',desc:'KM/H'},
+{id:'height',icon:'📐',name:'Height Converter',desc:'Feet to CM'},
+{id:'weight',icon:'⚖️',name:'Weight Converter',desc:'KG to Pound'},
+{id:'temp',icon:'🌡️',name:'Temperature Converter',desc:'C to F'},
+{id:'love',icon:'❤️',name:'Love Calculator',desc:'Fun check'},
+{id:'random',icon:'🎲',name:'Random Number',desc:'1 to 100'},
+{id:'coin',icon:'🪙',name:'Coin Flip',desc:'Head / Tail'},
+{id:'stop',icon:'⏱️',name:'Stopwatch',desc:'Start / Stop'},
+{id:'timer',icon:'⏳',name:'Timer',desc:'Countdown'},
+{id:'cal',icon:'🗓️',name:'Calendar',desc:'Today date'},
+{id:'todo',icon:'✅',name:'To-Do List',desc:'Add task'},
+{id:'notes',icon:'📒',name:'Notes App',desc:'Quick notes'},
+{id:'color',icon:'🎨',name:'Color Picker',desc:'Pick color'},
+{id:'barcode',icon:'🏷️',name:'Barcode Generator',desc:'Text to code'},
+{id:'invoice',icon:'🧾',name:'Invoice Generator',desc:'Bill maker'},
+{id:'resume',icon:'📄',name:'Resume Maker',desc:'CV maker'},
+];
+const grid=document.getElementById('grid');
+function render(list){grid.innerHTML=list.map(t=>`<div class="card" onclick="openTool('${t.id}')"><span>${t.icon}</span><h3>${t.name}</h3><p>${t.desc}</p></div>`).join('')}
+render(tools);
+function filter(){let v=document.getElementById('search').value.toLowerCase();render(tools.filter(t=>t.name.toLowerCase().includes(v)))}
+function openTool(id){
+let t=tools.find(x=>x.id==id); let h=`<button class="close" onclick="closeBox()">✖ Close</button><h2>${t.icon} ${t.name}</h2><div id="content"></div>`;
+document.getElementById('boxInner').innerHTML=h; document.getElementById('box').style.display='block';
+let c=document.getElementById('content');
+if(id=='pass') c.innerHTML=`<label>Length</label><input id="len" type="number" value="12"><button onclick="genPass()">Generate Password</button><div class="result" id="r"></div>`;
+if(id=='word') c.innerHTML=`<textarea id="txt" rows="4" placeholder="Type here..."></textarea><button onclick="document.getElementById('r').innerText='Words: '+document.getElementById('txt').value.trim().split(/\\s+/).filter(Boolean).length+' | Chars: '+document.getElementById('txt').value.length">Count</button><div class="result" id="r"></div>`;
+if(id=='unit') c.innerHTML=`<input id="v" type="number" placeholder="KM"><button onclick="document.getElementById('r').innerText=document.getElementById('v').value+' KM = '+(document.getElementById('v').value*1000)+' Meter'">Convert</button><div class="result" id="r"></div>`;
+if(id=='curr') c.innerHTML=`<input id="v" type="number" placeholder="USD"><button onclick="document.getElementById('r').innerText='$'+document.getElementById('v').value+' = ₹'+(document.getElementById('v').value*88)+' INR (Approx)'">Convert</button><div class="result" id="r"></div>`;
+if(id=='height') c.innerHTML=`<input id="v" type="number" placeholder="Feet"><button onclick="document.getElementById('r').innerText=document.getElementById('v').value+' Feet = '+(document.getElementById('v').value*30.48).toFixed(1)+' CM'">Convert</button><div class="result" id="r"></div>`;
+if(id=='weight') c.innerHTML=`<input id="v" type="number" placeholder="KG"><button onclick="document.getElementById('r').innerText=document.getElementById('v').value+' KG = '+(document.getElementById('v').value*2.20462).toFixed(2)+' Pound'">Convert</button><div class="result" id="r"></div>`;
+if(id=='temp') c.innerHTML=`<input id="v" type="number" placeholder="Celsius"><button onclick="document.getElementById('r').innerText=document.getElementById('v').value+'°C = '+((document.getElementById('v').value*9/5)+32).toFixed(1)+'°F'">Convert</button><div class="result" id="r"></div>`;
+if(id=='love') c.innerHTML=`<input placeholder="Your Name"><input placeholder="Partner Name"><button onclick="document.getElementById('r').innerText='❤️ Love Score: '+(Math.floor(Math.random()*41)+60)+'% - Perfect Match!'">Check Love</button><div class="result" id="r"></div>`;
+if(id=='random') c.innerHTML=`<button onclick="document.getElementById('r').innerText='🎲 Number: '+(Math.floor(Math.random()*100)+1)">Generate</button><div class="result" id="r"></div>`;
+if(id=='coin') c.innerHTML=`<button onclick="document.getElementById('r').innerText=Math.random()>0.5?'🪙 HEAD':'🪙 TAIL'">Flip Coin</button><div class="result" id="r"></div>`;
+if(id=='todo') c.innerHTML=`<input id="task" placeholder="New Task"><button onclick="let li=document.createElement('div');li.innerText='✅ '+document.getElementById('task').value;document.getElementById('r').appendChild(li);document.getElementById('task').value=''">Add Task</button><div class="result" id="r"></div>`;
+if(id=='notes') c.innerHTML=`<textarea rows="5" placeholder="Write your notes here..."></textarea><p>Notes are saved in your browser while page is open.</p>`;
+if(id=='color') c.innerHTML=`<input type="color" id="col" value="#1e3a8a"><button onclick="document.getElementById('r').innerText='Color Code: '+document.getElementById('col').value;document.getElementById('r').style.background=document.getElementById('col').value">Show Code</button><div class="result" id="r"></div>`;
+if(id=='date') c.innerHTML=`<label>From</label><input type="date" id="d1"><label>To</label><input type="date" id="d2"><button onclick="let a=new Date(document.getElementById('d1').value),b=new Date(document.getElementById('d2').value);document.getElementById('r').innerText='Days: '+Math.abs(Math.round((b-a)/86400000))">Calculate Days</button><div class="result" id="r"></div>`;
+if(id=='time') c.innerHTML=`<input id="v" type="number" placeholder="Hours"><button onclick="document.getElementById('r').innerText=document.getElementById('v').value+' Hours = '+(document.getElementById('v').value*60)+' Minutes'">Convert</button><div class="result" id="r"></div>`;
+if(id=='speed') c.innerHTML=`<input id="d" type="number" placeholder="Distance KM"><input id="t" type="number" placeholder="Time Hours"><button onclick="document.getElementById('r').innerText='Speed: '+(document.getElementById('d').value/document.getElementById('t').value).toFixed(1)+' KM/H'">Calculate</button><div class="result" id="r"></div>`;
+if(id=='qr') c.innerHTML=`<input id="v" placeholder="Enter text / link"><button onclick="document.getElementById('r').innerHTML='<img src=https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(document.getElementById('v').value)+'>'">Generate QR</button><div class="result" id="r"></div>`;
+if(id=='barcode') c.innerHTML=`<input id="v" placeholder="Enter number / text"><button onclick="document.getElementById('r').innerHTML='<img src=https://barcode.tec-it.com/barcode.ashx?data='+encodeURIComponent(document.getElementById('v').value)+'&code=Code128>'">Generate Barcode</button><div class="result" id="r"></div>`;
+if(id=='tts') c.innerHTML=`<textarea id="speak" rows="3" placeholder="Type to speak..."></textarea><button onclick="let u=new SpeechSynthesisUtterance(document.getElementById('speak').value);speechSynthesis.speak(u)">🔊 Speak</button>`;
+if(id=='cal') c.innerHTML=`<div class="result">${new Date().toDateString()}</div>`;
+if(id=='stop') c.innerHTML=`<button onclick="let s=0;let i=setInterval(()=>{s++;document.getElementById('r').innerText='Time: '+s+' sec'},1000);this.onclick=null">Start Stopwatch</button><div class="result" id="r">Time: 0 sec</div>`;
+if(id=='timer') c.innerHTML=`<input id="v" type="number" placeholder="Seconds"><button onclick="let s=document.getElementById('v').value;let i=setInterval(()=>{document.getElementById('r').innerText='Left: '+s+' sec';s--;if(s<0){clearInterval(i);document.getElementById('r').innerText='⏰ Time Up!'}} ,1000)">Start Timer</button><div class="result" id="r"></div>`;
+if(id=='invoice') c.innerHTML=`<input placeholder="Customer Name"><input placeholder="Item"><input type="number" placeholder="Amount ₹"><button onclick="document.getElementById('r').innerText='🧾 Invoice Created! Total: ₹'+document.querySelectorAll('input')[2].value">Create Invoice</button><div class="result" id="r"></div>`;
+if(id=='resume') c.innerHTML=`<input placeholder="Your Name"><input placeholder="Your Skill"><textarea placeholder="About you"></textarea><button onclick="document.getElementById('r').innerText='📄 Resume Ready for '+document.querySelector('input').value">Make Resume</button><div class="result" id="r"></div>`;
+if(id=='img') c.innerHTML=`<p>Tip: 1080x1080 for Instagram, 1920x1080 for YouTube, 1200x628 for Facebook. Use any free resizer app with these sizes.</p><div class="result">Image Size Guide Ready</div>`;
+}
+function genPass(){let ch='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!';let l=document.getElementById('len').value;let p='';for(let i=0;i<l;i++)p+=ch[Math.floor(Math.random()*ch.length)];document.getElementById('r').innerText=p}
+function closeBox(){document.getElementById('box').style.display='none'}
+</script>
+</body>
+</html>
